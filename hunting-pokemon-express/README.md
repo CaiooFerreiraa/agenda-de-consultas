@@ -1,1 +1,0 @@
-Site para ficar visivel qual pokemon estou caçando, além de especificar as caracteristicas que o pokemon deve ter, após a captura, deve ser feito o update do pokemon, adicionando o status de capturado e a foto do individo para mostrar como ele está.
