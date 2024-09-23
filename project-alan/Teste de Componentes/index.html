@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  :root {
+    --width-checkbox-pokebola: 50px;
+    --width-fita: 5px;
+    --size-balls: calc(var(--width-fita) * 2);
+  }
+
+  .checkbox {
+    width: var(--width-checkbox-pokebola);
+    height: var(--width-checkbox-pokebola);
+    border-radius: 50%;
+    border: 1px solid black;
+    overflow: hidden;
+  }
+
+  #chk1 {
+    display: none;
+  }
+
+  .pokebola {
+    background-color: transparent;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+
+  .cima {
+    display: block;
+    position: absolute;
+    background-color: gray;
+    width: 100%;
+    height: calc((var(--width-checkbox-pokebola) - var(--width-fita)) / 2);
+    top: 0;
+  }
+
+  .baixo {
+    display: block;
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    height: calc((var(--width-checkbox-pokebola) - var(--width-fita)) / 2);
+    bottom: 0;
+  }
+
+  .fita {
+    display: block;
+    position: absolute;
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    height: var(--width-fita);
+  }
+
+  .bolinha_meio1 {
+    display: block;
+    position: absolute;
+    background-color: rgb(0, 0, 0);
+    width: var(--size-balls);
+    height: var(--size-balls);
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  .bolinha_meio2 {
+    display: block;
+    position: absolute;
+    background-color: lightgray;
+    width: calc(var(--size-balls) / 2);
+    height: calc(var(--size-balls) / 2);
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  #chk1:checked + label > .cima {
+    background-color: red;
+  }
+</style>
+<body>
+  <div class="checkbox">
+    <input type="checkbox" id="chk1" class="checkbox" name="chk">
+    <label for="chk1" class="pokebola">
+      <div class="cima"></div>
+      <div class="bolinha_meio1"></div>
+      <div class="fita"></div>
+      <div class="bolinha_meio2"></div>
+      <div class="baixo"></div>
+    </label>
+  </div>
+</body>
+</html>
