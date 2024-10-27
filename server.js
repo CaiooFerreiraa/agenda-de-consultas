@@ -1,10 +1,12 @@
 import express from 'express';
 import router from './routes.js';
 import path from 'path';
+import os from 'os';
 
+const networkInterface = os.networkInterfaces();
 const app = express();
 const port = 8080;
-const ip = '192.168.1.150'
+const ip = networkInterface['Wi-Fi'][3].address;
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.resolve('public')));

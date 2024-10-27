@@ -1,0 +1,41 @@
+<%- include('include/header') %>
+
+<header>
+  <nav>
+    <a href="/voltar">
+      <span class="undo">
+        <span class="material-symbols-outlined">undo</span>
+      </span>
+    </a>
+  </nav>
+  <div class="triangle-right-login"></div>
+  <div class="triangle-left-login"></div>
+</header>
+<main>
+  <div>
+    <h1>Login</h1>
+    <span>Área do paciente</span>
+  </div>
+  <div>
+    <span>Seja bem vindo</span>
+
+    <form action="/login" method="post" id="login-form">
+      <input type="text" name="cpf" id="cpf" placeholder="Informe seu CPF">
+      <input type="password" name="password" id="password" placeholder="Informe sua senha">
+
+      <button type="submit" id="next">Avançar</button>
+      <div>
+        <button>Esqueci a senha</button>
+        <button>Cadastrar-se</button>
+      </div>
+    </form>
+  </div>
+</main>
+<footer>
+  <a href="">
+    <span>?</span>
+    <span>Precisa de ajuda?</span>
+  </a>
+</footer>
+
+<%- include('include/footer') %>

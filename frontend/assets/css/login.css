@@ -1,1 +1,32 @@
 @charset "UTF-8";
+
+:root {
+  --size-triangle: 5px;
+}
+
+header {
+  position: relative;
+  height: 15%;
+  background: linear-gradient(to right, #004daa, var(--color-green));
+
+  .triangle-right-login, .triangle-left-login {
+    position: absolute;
+    bottom: 0;
+    height: 0;
+    width: 0;
+  }
+
+  .triangle-left-login {
+    right: 0;
+    border-right: 0 solid transparent;
+    border-left: var(--width-triangle) solid transparent;;
+    border-bottom: calc(var(--height-triangle) - var(--size-triangle)) solid white;
+  }
+
+  .triangle-right-login {
+    left: 0;
+    border-right: var(--width-triangle) solid transparent;
+    border-left: 0 solid transparent;
+    border-bottom: calc(var(--height-triangle) - var(--size-triangle)) solid white;
+  }
+}

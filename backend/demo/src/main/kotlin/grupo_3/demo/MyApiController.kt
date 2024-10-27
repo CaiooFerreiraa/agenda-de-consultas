@@ -1,22 +1,23 @@
 package grupo_3.demo
 
-import org.springframework.web.bind.annotation.GetMapping
+import grupo_3.demo.User.UserCadastro
+import grupo_3.demo.User.User
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.CrossOrigin
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 
-@CrossOrigin(origins = ["http://localhost:8080"]) // Permite requisições de 'http://localhost:3000' para todos os endpoints deste controller
+@CrossOrigin(origins = ["http://192.168.1.151:8080"]) // Permite requisições de 'http://192.168.1.151:8080' para todos os endpoints deste controller
 @RestController
 @RequestMapping("/api")
 class MyApiController {
+    val cadastro = UserCadastro(10);
 
-    @GetMapping("/hello")
-    fun helloWorld(): String {
-        return "Hello, test!"
-    }
+    @PostMapping("/login")
+    fun createUser(@RequestBody userData: User): Array<User?> {
+        cadastro.addUser(userData);
 
-    @GetMapping("/another-endpoint")
-    fun anotherEndpoint(): String {
-        return "Another endpoint response"
+        return cadastro.getUsers();
     }
 }
