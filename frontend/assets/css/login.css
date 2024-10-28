@@ -9,6 +9,32 @@ header {
   height: 15%;
   background: linear-gradient(to right, #004daa, var(--color-green));
 
+  > nav {
+    position: absolute;
+    background-color: white;
+    top: 15%;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.5em;
+
+    > a {
+      display: flex;
+      justify-content: center;
+      text-decoration: none;
+      color: black;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+
+      > .material-symbols-outlined {
+        font-size: 38px;
+        font-weight: 600;
+      }
+    }
+  }
+
   .triangle-right-login, .triangle-left-login {
     position: absolute;
     bottom: 0;
@@ -28,5 +54,107 @@ header {
     border-right: var(--width-triangle) solid transparent;
     border-left: 0 solid transparent;
     border-bottom: calc(var(--height-triangle) - var(--size-triangle)) solid white;
+  }
+}
+
+main {
+  > .tittle-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 2em;
+    font-weight: bolder;
+    background-color: #beffdfac;
+    padding: 20px 0;
+    margin-top: 5px;
+  }
+
+  > .body-login {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 70%;
+
+    > h2 {
+      margin: 40px 0 20px 0;
+      font-size: 1.2em;
+      font-weight: bolder;
+    }
+
+    > #login-form {
+      display: flex;
+      flex-direction: column;
+
+      > input {
+        margin-bottom: 20px;
+        height: 30px;
+        border-radius: 15px;
+        padding: 10px 0 10px 20px;
+        font-size: 1.1em;
+        border: none;
+        background-color: #cfe4ffbe;
+        font-weight: bold;
+      }
+
+      > #next {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 30px auto 0 auto;
+        width: 60%;
+        padding: 15px 0;
+        border-radius: 20px;
+        height: 40px;
+        font-size: 1.3em;
+        background-color: var(--color-green);
+        font-weight: bold;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      > .links-auxiliares {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 40px;
+
+        > button {
+          cursor: pointer;
+          border: none;
+          background-color: transparent;
+          font-weight: bolder;
+          font-size: 1.1em;
+        }
+      }
+    }
+  }
+}
+
+footer {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+
+  > a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+    font-size: 1.3em;
+    gap: 5px;
+
+    > span:nth-child(1) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--color-green);
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      font-size: 30px;
+    }
   }
 }

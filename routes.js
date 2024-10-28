@@ -7,10 +7,10 @@ const router = express.Router();
 //Rotas da home
 router.get('/', homeController.index);
 
-//Rota login
+//Rotas login
 router.get('/login', loginController.index);
 
-//Route previus
+//Rota voltar
 router.get('/voltar', loginController.previus);
 
 export default router;

@@ -18,7 +18,6 @@ class UserCadastro {
         if (estaVazia()) return aux;
 
         var userArray: Array<User?> = getUsers();
-        println(userArray[0]?.cpf == user.cpf);
         
         for (i in 0 until userArray.size) {
             if (userArray[i]?.cpf == user.cpf) {
