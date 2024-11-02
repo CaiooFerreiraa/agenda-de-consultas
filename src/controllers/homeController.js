@@ -1,5 +1,5 @@
 const index = (req, res) => {
-  res.render('home.ejs')
+  res.render('home.ejs');
 }
 
 export default {
