@@ -2,14 +2,14 @@ package grupo_3.demo.User
 
 class UserCadastro {
     private val users: Array<User?>;
-    private var qta: Int = 0;
-    private var ponteiroIncio: Int;
-    private var ponteiroFim: Int;
+    private var amount: Int = 0;
+    private var pointerInit: Int;
+    private var poniterEnd: Int;
 
     constructor(tam: Int = 10) {
         users = arrayOfNulls(tam)
-        ponteiroFim = -1;
-        ponteiroIncio = 0;
+        poniterEnd = -1;
+        pointerInit = 0;
     }
 
     private fun userExistente(user: User): Boolean {
@@ -29,19 +29,19 @@ class UserCadastro {
     }
 
     private fun estaCheia(): Boolean {
-        return qta == users.size;
+        return amount == users.size;
     }
 
     private fun estaVazia(): Boolean {
-        return qta == 0;
+        return amount == 0;
     }
 
     fun getUsers(): Array<User?> {
         if (estaVazia()) return arrayOfNulls<User>(0);
 
-        val arrayAux: Array<User?> = arrayOfNulls(qta);
+        val arrayAux: Array<User?> = arrayOfNulls(amount);
 
-        for (i in 0 until qta) {
+        for (i in 0 until amount) {
             arrayAux[i] = users[i];
         }
         
@@ -52,9 +52,9 @@ class UserCadastro {
         if (estaCheia() || userExistente(user)) {
             println("A lista está cheia");
         } else {
-            ponteiroFim = (ponteiroFim + 1) % users.size;
-            users[ponteiroFim] = user;
-            qta++;
+            poniterEnd = (poniterEnd + 1) % users.size;
+            users[poniterEnd] = user;
+            amount++;
         }
     }
 }
