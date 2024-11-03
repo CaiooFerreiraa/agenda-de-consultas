@@ -16,7 +16,7 @@ const submit = async (req, res) => {
   }).then(response => response.json());
 
   console.log(reponse);
-  res.redirect('back');
+  res.redirect(req.get("Referrer"));
 }
 
 export default {

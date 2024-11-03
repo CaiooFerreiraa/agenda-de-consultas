@@ -1,39 +1,31 @@
 <%- include('include/header') %>
+<%- include('include/login-header') %>
 
-<header>
-  <nav>
-    <a href="/previus">
-      <span class="material-symbols-outlined">undo</span>
-    </a>
-  </nav>
-  <div class="triangle-right-login"></div>
-  <div class="triangle-left-login"></div>
-</header>
 <main>
-  <div class="tittle-login">
+
+  <%- include('include/tittle/tittle-header')%>
     <h1>Login</h1>
     <span>Área do paciente</span>
-  </div>
+  <%- include('include/tittle/tittle-footer')%>
+
   <div class="body-login">
     <h2>Seja bem vindo!</h2>
 
-    <form action="/login" method="post" id="login-form">
-      <input type="text" name="cpf" id="cpf" placeholder="Informe seu CPF ou Email">
-      <input type="password" name="password" id="password" placeholder="Informe sua senha">
+    <div>
+      <form action="/login" method="post" class="login-form">
+        <input type="text" name="cpf" id="cpf" placeholder="Informe seu CPF ou Email">
+        <input type="password" name="password" id="password" placeholder="Informe sua senha">
 
-      <button type="submit" id="next">Avançar</button>
+        <%- include('include/button-next')%>
+      </form>
+
       <div class="links-auxiliares">
-        <button>Esqueci a senha</button>
-        <button>Cadastrar-se</button>
+        <button><a href="/recovery-password">Esqueci a senha</a></button>
+        <button><a href="/register">Cadastrar-se</a></button>
       </div>
-    </form>
+    </div>
   </div>
 </main>
-<footer>
-  <a href="/help">
-    <span>?</span>
-    <span>Precisa de ajuda?</span>
-  </a>
-</footer>
 
+<%- include('include/help-footer') %>
 <%- include('include/footer') %>

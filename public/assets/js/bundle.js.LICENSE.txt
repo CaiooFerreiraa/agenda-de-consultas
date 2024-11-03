@@ -16,6 +16,8 @@
 
 /*! -!../../../node_modules/css-loader/dist/cjs.js!./login.css */
 
+/*! -!../../../node_modules/css-loader/dist/cjs.js!./register.css */
+
 /*! ../../../node_modules/css-loader/dist/runtime/api.js */
 
 /*! ../../../node_modules/css-loader/dist/runtime/sourceMaps.js */
@@ -3422,6 +3424,10 @@
 
 /*!********************************************************************************!*\
   !*** ./node_modules/core-js/modules/es.reflect.get-own-property-descriptor.js ***!
+  \********************************************************************************/
+
+/*!********************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./frontend/assets/css/register.css ***!
   \********************************************************************************/
 
 /*!**********************************************************************************!*\
