@@ -30,7 +30,7 @@ arquivo irá constar 2 variáveis de ambiente, sendo uma dela a variável que de
 <span>----------------------</span>
 <div> Como a aplicação pega a seu endereço ip para criar uma rota em que qualquer dispositivo possa acessar é preciso garantir que o backend aceite requisições vindas dessa url,
 nesse caso é preciso fazer algumas alterações em código, vá até "backend/demo/src/main/kotlin/MyApiController" nele você irá adicionar a rota que o express está gerando nesse trecho de código "@CrossOrigin(origins = ["http://192.168.1.151:8080", "adicione aqui sua rota do frontend"]) // Permite requisições de 'http://192.168.1.151:8080' para todos os endpoints deste controller", você pode obter essa rota
-indo ate o seu terminal e verificando qual rota o express criou para você ex: Servidor rodando: http://192.168.1.151:8080.
+indo ate o seu terminal e verificando qual rota o express criou para você ex: Servidor rodando: http://192.168.1.151:8080.</div>
 <span>----------------------</span>
 <div> Lembrando de verificar também as funções <strong>fetch</strong> do javascript caso você altere a porta do backend já que elas irão precisar dela.
 </div>

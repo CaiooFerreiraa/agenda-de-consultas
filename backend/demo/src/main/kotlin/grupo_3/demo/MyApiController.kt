@@ -1,7 +1,8 @@
 package grupo_3.demo
 
-import grupo_3.demo.User.UserCadastro
+import grupo_3.demo.User.UserLogin
 import grupo_3.demo.User.User
+import grupo_3.demo.User.UserRegister
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.CrossOrigin
@@ -12,12 +13,17 @@ import org.springframework.web.bind.annotation.RequestBody
 @RestController
 @RequestMapping("/api")
 class MyApiController {
-    val cadastro = UserCadastro(10);
+    val register = UserRegister(10)
+    var login = UserLogin(register.getUsers(), register.getAmount());
 
     @PostMapping("/login")
-    fun createUser(@RequestBody userData: User): Array<User?> {
-        cadastro.addUser(userData);
+    fun createUser(@RequestBody userData: User): Any? {
+        login = UserLogin(register.getUsers(), register.getAmount());
+        return login.userExistente(userData);
+    }
 
-        return cadastro.getUsers();
+    @PostMapping("/register")
+    fun registerUser(@RequestBody userData: User): Any? {
+        return register.addUser(userData);
     }
 }

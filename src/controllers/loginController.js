@@ -8,15 +8,36 @@ const previus = (req, res) => {
 
 const submit = async (req, res) => {
   const data = req.body;
+  //const csrfToken = res.locals.csrfToken;
 
-  const reponse = await fetch('http://192.168.1.151:8000/api/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-  }).then(response => response.json());
+  try {
+    const response = await fetch('http://192.168.1.151:8000/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+        // 'x-csrf-token': csrfToken
+      },
+      body: JSON.stringify(data)
+    }).then(response => response.json());
 
-  console.log(reponse);
-  res.redirect(req.get("Referrer"));
+    console.log(response)
+
+    if (response[0] !== 200) {
+      req.flash('error', 'Houve algum erro no login')
+      return req.session.save(() => {
+        res.redirect(req.get('Referrer'));
+      })
+    }
+
+    req.session.user = response[1];
+    req.flash('success', 'Login feito com sucesso');
+    return req.session.save(() => {
+      res.redirect(req.get('Referrer'));
+    })
+  } catch (e) {
+    console.error(e);
+    res.redirect('error');
+  }
 }
 
 export default {

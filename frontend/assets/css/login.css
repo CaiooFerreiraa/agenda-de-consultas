@@ -136,6 +136,22 @@ main {
         }
       }
     }
+
+    .msg-success {
+      background-color: palegreen;
+      padding: 8px;
+      margin-bottom: 5px;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+
+    .msg-error {
+      background-color: indianred;
+      padding: 8px;
+      margin-bottom: 5px;
+      font-weight: bold;
+      border-radius: 5px;
+    }
   }
 }
 
