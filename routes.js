@@ -5,6 +5,7 @@ import helpController from './src/controllers/helpController.js';
 import registerController from "./src/controllers/registerController.js";
 import { userRequired } from './src/middleware/globalMiddleware.js';
 import doctorController from "./src/controllers/doctorController.js";
+import patientController from "./src/controllers/patientController.js";
 
 const router = express.Router();
 
@@ -28,5 +29,8 @@ router.get('/previus-help', helpController.previus);
 
 //Routes Doctor
 router.get('/doctor', userRequired, doctorController.index);
+
+//Routes Patient
+router.get('/patient', userRequired, patientController.index);
 
 export default router;

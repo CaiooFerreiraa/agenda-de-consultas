@@ -1,15 +1,22 @@
-main .body-login > .regiter-box {
+main .body-login > .register-box {
     margin-top: 25px;
 }
 
-main .body-login > .regiter-box > form > input[type="number"]::-webkit-inner-spin-button,
-main .body-login > .regiter-box > form > input[type="number"]::-webkit-outer-spin-button {
+main .body-login > .register-box > form > input[type="number"]::-webkit-inner-spin-button,
+main .body-login > .register-box > form > input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
-main .body-login > .regiter-box > form > input[type="number"] {
+main .body-login > .register-box > form > input[type="number"] {
     -moz-appearance: textfield;
+}
+
+.option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 main .login-account {

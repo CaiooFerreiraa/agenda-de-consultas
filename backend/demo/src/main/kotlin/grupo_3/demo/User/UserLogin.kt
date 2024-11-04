@@ -19,7 +19,7 @@ class UserLogin {
         pointerInit = 0;
     }
 
-    fun userExistente(user: User): Any? {
+    fun userExistente(user: Login): Any? {
         if (estaVazia()) {
             data[0] = notFound;
             data[1] = null;
@@ -29,7 +29,7 @@ class UserLogin {
         var userArray: Array<User?> = getUsers();
         
         for (i in 0 until userArray.size) {
-            if (userArray[i]?.cpf == user.cpf) {
+            if (userArray[i]?.cpf == user.cpf && userArray[i]?.password == user.password) {
                 data[0] = success;
                 data[1] = userArray[i];
                 return data           }
