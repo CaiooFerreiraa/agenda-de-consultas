@@ -38,4 +38,21 @@ class Map<K, V> {
         }
         return false;
     }
+
+    // Método para obter todas as entradas
+    fun getEntries(): List<Entry<K, V>> {
+        val result = List<Entry<K, V>>()
+        for (i in 0 until entries.size()) {
+            val entry = entries.get(i)
+            if (entry != null) {
+                result.add(entry)
+            }
+        }
+        return result
+    }
+
+    // Método para obter o número de entradas no mapa
+    fun size(): Int {
+        return entries.size()
+    }
 }

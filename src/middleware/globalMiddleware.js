@@ -16,9 +16,9 @@ const csrfError = (err, req, res, next) => {
 
 const userRequired = (req, res, next) => {
     if (!req.session.user) {
-        req.flash('error', "Faça login para acessar a página");
-        return res.render('login');
-    };
+        req.flash("error", "Faça login para acessar a página");
+        return res.redirect('/login');
+    }
     next();
 }
 

@@ -1,0 +1,17 @@
+<%- include('include/header')%>
+
+<form action="/make-appointment" method="post">
+    <select name="doctor" id="doctor">
+        <option value="" selected >Escolha o seu médico</option>
+        <option value="felipe">Felipe Fernandes Araújo</option>
+        <option value="joão">João Lucas Matos Ferreira</option>
+        <option value="caio">Caio Ferreira Almeida</option>
+    </select>
+    <input type="date" name="date" id="date">
+    <input type="time" name="time" id="time">
+    <input type="text" name="reason" id="reason">
+    <input type="text" name="notes" id="notes">
+    <button type="submit">Enviar</button>
+</form>
+
+<%- include('include/footer')%>

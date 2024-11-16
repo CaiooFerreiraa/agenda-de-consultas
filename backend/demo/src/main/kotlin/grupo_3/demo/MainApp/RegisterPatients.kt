@@ -1,23 +1,29 @@
 package grupo_3.demo.MainApp
 
 class RegisterPatients {
-    private val patients = List<Patient>();
+    private val patients = Map<String, Patient>()
 
     fun register(patient: Patient): Boolean {
-        patients.add(patient);
-        return true;
+        if (patients.get(patient.cpf) != null) {
+            return false // Paciente já registrado
+        }
+        patients.add(patient.cpf, patient)
+        return true
     }
 
-    fun removePatient(patient: Patient): Boolean {
-        return patients.remove(patient);
+    fun getPatientByCpf(cpf: String): Patient? {
+        return patients.get(cpf)
     }
 
-    fun printPatient() {
-        for (i in 0 until patients.size()) {
-            val patient = patients.get(i);
-            if ( patient != null ) {
-                print(patient);
+    fun printPatients() {
+        val patientEntries = patients.getEntries() // Obtém todas as entradas do mapa
+        for (i in 0 until patientEntries.size()) {
+            val entry = patientEntries.get(i) // Obtém cada entrada individualmente
+            if (entry != null) {
+                val patient = entry.value
+                println("CPF: ${entry.key} - Paciente: $patient")
             }
         }
     }
+
 }

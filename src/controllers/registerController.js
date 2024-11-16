@@ -17,7 +17,7 @@ const register = async (req, res) => {
         if (response) {
             req.flash('success', "Cadastro realizado com sucesso");
             return req.session.save(
-                res.redirect('back')
+                res.redirect(req.get("Referrer"))
             );
         }
 

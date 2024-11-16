@@ -6,6 +6,7 @@ import registerController from "./src/controllers/registerController.js";
 import { userRequired } from './src/middleware/globalMiddleware.js';
 import doctorController from "./src/controllers/doctorController.js";
 import patientController from "./src/controllers/patientController.js";
+import consultationController from "./src/controllers/consultationController.js";
 
 const router = express.Router();
 
@@ -32,5 +33,12 @@ router.get('/doctor', userRequired, doctorController.index);
 
 //Routes Patient
 router.get('/patient', userRequired, patientController.index);
+
+//Routes Make Appointment
+router.get('/make-appointment', userRequired, consultationController.index);
+router.post('/make-appointment', userRequired, consultationController.marked);
+
+//Routes My appointments
+router.get('/my-appointment', userRequired, consultationController.myAppointment);
 
 export default router;
