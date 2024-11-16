@@ -4,7 +4,6 @@ const index = (req, res) => {
 
 const register = async (req, res) => {
     const data = req.body;
-    console.log(data);
 
     try {
         const response = await fetch('http://192.168.1.151:8000/api/register', {
@@ -13,13 +12,17 @@ const register = async (req, res) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
-        }).then(response => response.json()).then(data => data);
+        }).then(res => res.json());
 
-        console.log(response)
-        res.send(response)
+        if (response) {
+            req.flash('success', "Cadastro realizado com sucesso");
+            return req.session.save(
+                res.redirect('back')
+            );
+        }
 
-    } catch (e) {
-        console.error(e);
+    } catch (error) {
+        console.error(error)
     }
 }
 

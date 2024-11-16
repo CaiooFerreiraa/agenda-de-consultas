@@ -1,35 +1,23 @@
 package grupo_3.demo.MainApp
 
-class RegisterPatients : Listable<Patient> {
-    private val patients: Array<Patient?>;
-    private var pointerInit: Int;
-    private var pointerEnd: Int;
-    private var amount: Int;
+class RegisterPatients {
+    private val patients = List<Patient>();
 
-    constructor(tam: Int = 10) {
-        patients = arrayOfNulls(tam);
-        pointerInit = 0;
-        pointerEnd = -1;
-        amount = 0;
+    fun register(patient: Patient): Boolean {
+        patients.add(patient);
+        return true;
     }
 
-    override fun isFull(): Boolean {
-        return amount == patients.size;
+    fun removePatient(patient: Patient): Boolean {
+        return patients.remove(patient);
     }
 
-    override fun isEmpty(): Boolean {
-        return  amount == 0;
-    }
-
-    override fun registerPatient(patient: Patient) {
-        TODO("Not yet implemented")
-    }
-
-    override fun removePatient(patient: Patient) {
-        TODO("Not yet implemented")
-    }
-
-    override fun printPatient(): String {
-        TODO("Not yet implemented")
+    fun printPatient() {
+        for (i in 0 until patients.size()) {
+            val patient = patients.get(i);
+            if ( patient != null ) {
+                print(patient);
+            }
+        }
     }
 }

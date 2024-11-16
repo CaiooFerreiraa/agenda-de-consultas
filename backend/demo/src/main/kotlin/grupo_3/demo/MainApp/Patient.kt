@@ -1,26 +1,26 @@
 package grupo_3.demo.MainApp
 
-class Patient {
-    private var name: String;
-    private var cpf: String;
-    private var email: String;
-    private var age: Int;
-    private var passLogin: String;
+class Patient(val name: String, val cpf: String, val email: String, val age: Int) {
+    private val historyConsultations = List<Consultation>();
 
-    constructor(name: String, cpf: String, email: String, age: Int, passLogin: String) {
-        this.name = name;
-        this.cpf = cpf;
-        this.email = email;
-        this.age = age;
-        this.passLogin = passLogin;
+    fun addConsultation(consultation: Consultation) {
+        historyConsultations.add(consultation);
     }
 
-    fun imprimir() {
-        println(name);
-        println(cpf);
-        println(email);
-        println(age);
-        println(passLogin);
-//        println(history);
+    fun printHistoryConsultations(): String {
+        var result = "Histórico de Consultas $name\n";
+
+        for (i in 0 until historyConsultations.size()) {
+            val consultation = historyConsultations.get(i);
+            if (consultation != null) {
+                result += "- ${consultation.printConsultation()}\n"
+            }
+        }
+
+        return result
+    }
+
+    override fun toString(): String {
+        return "Patient(nome='$name', email='$email', idade=$age)"
     }
 }
