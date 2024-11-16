@@ -1,35 +1,29 @@
 package grupo_3.demo.MainApp
 
-class RegisterPatients : Listable<Patient> {
-    private val patients: Array<Patient?>;
-    private var pointerInit: Int;
-    private var pointerEnd: Int;
-    private var amount: Int;
+class RegisterPatients {
+    private val patients = Map<String, Patient>()
 
-    constructor(tam: Int = 10) {
-        patients = arrayOfNulls(tam);
-        pointerInit = 0;
-        pointerEnd = -1;
-        amount = 0;
+    fun register(patient: Patient): Boolean {
+        if (patients.get(patient.cpf) != null) {
+            return false // Paciente já registrado
+        }
+        patients.add(patient.cpf, patient)
+        return true
     }
 
-    override fun isFull(): Boolean {
-        return amount == patients.size;
+    fun getPatientByCpf(cpf: String): Patient? {
+        return patients.get(cpf)
     }
 
-    override fun isEmpty(): Boolean {
-        return  amount == 0;
+    fun printPatients() {
+        val patientEntries = patients.getEntries() // Obtém todas as entradas do mapa
+        for (i in 0 until patientEntries.size()) {
+            val entry = patientEntries.get(i) // Obtém cada entrada individualmente
+            if (entry != null) {
+                val patient = entry.value
+                println("CPF: ${entry.key} - Paciente: $patient")
+            }
+        }
     }
 
-    override fun registerPatient(patient: Patient) {
-        TODO("Not yet implemented")
-    }
-
-    override fun removePatient(patient: Patient) {
-        TODO("Not yet implemented")
-    }
-
-    override fun printPatient(): String {
-        TODO("Not yet implemented")
-    }
 }

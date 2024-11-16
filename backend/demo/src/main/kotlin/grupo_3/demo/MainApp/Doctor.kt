@@ -2,20 +2,46 @@ package grupo_3.demo.MainApp
 
 import java.time.LocalDateTime
 
-class Doctor {
-    private var name: String;
-    private var specialty: String;
-    private var cm : String;
-    private var email: String;
-    private var passLogin: String;
-    private var availableTimes: List<LocalDateTime>;
+class Doctor(val name: String, val specialty: String, val cm: String, val email: String) {
+    val availableTimes = List<LocalDateTime>()
+    val blockTimes = List<LocalDateTime>();
 
-    constructor(name: String, specialty: String, cm: String, email: String, passLogin: String, availableTimes: List<LocalDateTime>) {
-        this.name = name;
-        this.specialty = specialty;
-        this.cm = cm;
-        this.email = email;
-        this.passLogin = passLogin;
-        this.availableTimes = availableTimes;
+    fun hourBlock(dateHour: LocalDateTime): Boolean {
+        if (availableTimes.contains(dateHour)) {
+            blockTimes.add(dateHour);
+            return true;
+        }
+        return false;
+    }
+
+    fun hourRelease(dateHour: LocalDateTime): Boolean {
+        return blockTimes.remove(dateHour);
+    }
+
+    fun printSchedule(): List<LocalDateTime> {
+        val schedule = List<LocalDateTime>();
+
+        for (i in 0 until availableTimes.size()) {
+            val hour = availableTimes.get(i);
+
+            if (hour != null && !blockTimes.contains(hour)) {
+                schedule.add(hour);
+            }
+        }
+
+        return schedule;
+    }
+
+    fun addAvailableTime(dateHour: LocalDateTime): Boolean {
+        availableTimes.add(dateHour);
+        return true;
+    }
+
+    fun addNotes(consultation: Consultation, notes: String) {
+        consultation.notes += "- $notes\n"
+    }
+
+    override fun toString(): String {
+        return "Medico(nome='$name', specialty='$specialty', email='$email')"
     }
 }

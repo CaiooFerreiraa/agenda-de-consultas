@@ -1,0 +1,33 @@
+<%- include('include/header') %>
+<%- include('include/login-header') %>
+
+
+<main>
+    <%- include('include/tittle/tittle-header')%>
+        <h1>Cadastrar</h1>
+        <span>Novo usuário</span>
+    <%- include('include/tittle/tittle-footer')%>
+
+    <div class="body-login">
+        <%- include('include/msg')%>
+
+        <div class="register-box">
+            <form action="/register" method="post" class="login-form">
+                <!--<input type="hidden" name="_csrfToken" value="csrfToken vai aqui">-->
+                <input type="text" name="username" placeholder="Informe seu Nome Completo">
+                <input type="text" name="cpf" id="cpf" placeholder="Informe seu CPF">
+                <input type="email" name="email" id="email" placeholder="Informe seu E-mail">
+                <input type="number" name="age" id="age" placeholder="Informe sua Idade">
+                <input type="password" name="password" id="password" placeholder="Crie sua senha">
+
+                <%- include('include/button-next')%>
+            </form>
+            <div class="login-account">
+                <button><a href="/login">Já tem uma conta?</a></button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<%- include('include/help-footer') %>
+<%- include('include/footer') %>

@@ -1,0 +1,42 @@
+main .body-login > .register-box {
+    margin-top: 25px;
+}
+
+main .body-login > .register-box > form > input[type="number"]::-webkit-inner-spin-button,
+main .body-login > .register-box > form > input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+main .body-login > .register-box > form > input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+main .login-account {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+
+
+
+    button {
+        background-color: transparent;
+        border: none;
+        font-weight: bolder;
+        font-size: 1.1em;
+
+        > a {
+            text-decoration: none;
+            color: black;
+        }
+    }
+}
+
