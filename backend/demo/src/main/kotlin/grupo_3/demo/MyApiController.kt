@@ -23,15 +23,33 @@ class MyApiController(private val userRegister: UserRegister = UserRegister(10))
     val doctors = ManagedDoctors();
     val regPatient = RegisterPatients();
 
-    val felipe = Doctor("Felipe Araújo Matos", "Cardiologista", "5682", "cs1919328@gamil.com");
+    init {
+        // Lista de médicos pré-cadastrados
+        val predefinedDoctors = arrayOf(
+            Doctor("Caio Ferreira Almeida", "Cardiologista", "5682", "cs1919328@gamil.com", "C@iosant0s"),
+            Doctor("Ana Clara Silva", "Pediatra", "1234", "anaclara@gmail.com", "p"),
+            Doctor("Lucas Santos", "Dermatologista", "9876", "lucassantos@gmail.com", "o")
+        )
+
+        // Cadastra os médicos
+        for (i in 0 until predefinedDoctors.size) {
+            doctors.registerDoctor(predefinedDoctors[i]);
+        }
+    }
 
     private val userLogin: UserLogin
         get() = UserLogin(userRegister.getUsers(), userRegister.getAmount())
 
     @PostMapping("/login")
     fun loginUser(@RequestBody userData: Login): Any? {
-        doctors.registerDoctor(felipe);
-        return userLogin.userExistente(userData)
+        val ifDoctor = doctors.isDoctor(userData.identifier, userData.password);
+
+        return if ( ifDoctor != false) {
+            ifDoctor;
+        } else {
+            userLogin.userExistente(userData);
+        }
+
     }
 
     @PostMapping("/register")
@@ -41,7 +59,7 @@ class MyApiController(private val userRegister: UserRegister = UserRegister(10))
 
     @PostMapping("/registerConsultation")
     fun registerConsultation(@RequestBody userData: dataConsultation): Any? {
-        val doc = Doctor(userData.doctor.name, userData.doctor.specialty, userData.doctor.cm, userData.doctor.email)
+        val doc = Doctor(userData.doctor.name, userData.doctor.specialty, userData.doctor.cm, userData.doctor.email, null)
         var pat = regPatient.getPatientByCpf(userData.patient.cpf)
 
         if (pat == null) {

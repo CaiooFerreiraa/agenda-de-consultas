@@ -2,7 +2,7 @@ package grupo_3.demo.MainApp
 
 import java.time.LocalDateTime
 
-class Doctor(val name: String, val specialty: String, val cm: String, val email: String) {
+class Doctor(val name: String, val specialty: String, val cm: String, val email: String, val password: String?) {
     val availableTimes = List<LocalDateTime>()
     val blockTimes = List<LocalDateTime>();
 

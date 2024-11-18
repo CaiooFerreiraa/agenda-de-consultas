@@ -17,8 +17,8 @@ router.get('/', homeController.index);
 router.get('/login', loginController.index);
 router.post('/login', loginController.submit);
 
-//Routes Previus
-router.get('/previus', loginController.previus);
+//Routes Previous
+router.get('/previus', loginController.previous);
 
 //Routes Register
 router.get('/register', registerController.index)
@@ -26,7 +26,7 @@ router.post('/register', registerController.register);
 
 //Routes Help
 router.get('/help', helpController.index);
-router.get('/previus-help', helpController.previus);
+router.get('/previous-help', helpController.previous);
 
 //Routes Doctor
 router.get('/doctor', userRequired, doctorController.index);

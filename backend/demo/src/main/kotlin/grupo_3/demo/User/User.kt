@@ -5,7 +5,7 @@ import grupo_3.demo.MainApp.Patient
 import java.time.LocalDateTime
 
 data class Login (
-    val cpf: String,
+    val identifier: String,
     val password: String,
 )
 

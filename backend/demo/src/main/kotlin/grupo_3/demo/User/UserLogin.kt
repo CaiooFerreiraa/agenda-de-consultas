@@ -29,7 +29,7 @@ class UserLogin {
         var userArray: Array<User?> = getUsers();
         
         for (i in 0 until userArray.size) {
-            if (userArray[i]?.cpf == user.cpf && userArray[i]?.password == user.password) {
+            if (userArray[i]?.cpf == user.identifier && userArray[i]?.password == user.password) {
                 data[0] = success;
                 data[1] = userArray[i];
                 return data           }

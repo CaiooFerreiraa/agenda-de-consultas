@@ -16,7 +16,7 @@ const register = async (req, res) => {
 
         if (response) {
             const dataLogin = {
-                cpf: data.cpf,
+                identifier: data.cpf,
                 password: data.password
             }
 
