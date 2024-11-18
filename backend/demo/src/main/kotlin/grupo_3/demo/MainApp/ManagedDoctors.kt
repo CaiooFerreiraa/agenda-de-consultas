@@ -5,7 +5,7 @@ class ManagedDoctors {
     private val doctorsRegister = List<Doctor>();
 
     fun registerDoctor(doctor: Doctor) {
-        doctorsRegister.add(doctor);
+        doctorsRegister.addList(doctor);
     }
 
     fun listConsultationsDoctor(doctor: Doctor) {

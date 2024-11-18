@@ -22,7 +22,6 @@ class MyApiController(private val userRegister: UserRegister = UserRegister(10))
     val consultation = ManagedConsultation();
     val doctors = ManagedDoctors();
     val regPatient = RegisterPatients();
-    lateinit var pat: Patient;
 
     val felipe = Doctor("Felipe Araújo Matos", "Cardiologista", "5682", "cs1919328@gamil.com");
 
@@ -62,7 +61,7 @@ class MyApiController(private val userRegister: UserRegister = UserRegister(10))
 
         return if (pat != null) {
             // Retorna o histórico de consultas do paciente
-            pat.printHistoryConsultations()
+           pat.getHistoryConsultations();
         } else {
             // Retorna uma mensagem de erro caso o paciente não seja encontrado
             "Paciente com CPF ${userData.cpf} não encontrado."

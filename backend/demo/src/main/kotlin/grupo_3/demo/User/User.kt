@@ -10,7 +10,7 @@ data class Login (
 )
 
 data class User (
-    val username: String,
+    val name: String,
     val cpf: String,
     val email: String,
     val age: Int,

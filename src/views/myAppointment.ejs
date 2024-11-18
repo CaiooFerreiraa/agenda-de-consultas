@@ -1,1 +1,23 @@
-<div>Testando</div>
+<h1>Lista de Consultas</h1>
+
+<% appointments.forEach((consulta, index) => { %>
+    <h2>Consulta <%= index + 1 %></h2>
+
+    <!-- Informações do Médico -->
+    <p>Médico: <%= consulta.doctorName %> (<%= consulta.doctorSpecialty %>)</p>
+    <p>E-mail do Médico: <%= consulta.doctorEmail %></p>
+    <p>CRM: <%= consulta.doctorCm %></p>
+
+    <!-- Informações do Paciente -->
+    <p>Paciente: <%= consulta.patientName %> (<%= consulta.patientCpf %>)</p>
+    <p>E-mail do Paciente: <%= consulta.patientEmail %></p>
+    <p>Idade: <%= consulta.patientAge %> anos</p>
+
+    <!-- Informações da Consulta -->
+    <p>Data e Hora: <%= consulta.dateHour %></p>
+    <p>Motivo: <%= consulta.reason %></p>
+    <p>Notas: <%= consulta.notes ? consulta.notes : "Sem notas adicionais" %></p>
+    <p>Status: <%= consulta.status %></p>
+
+    <hr>
+<% }) %>

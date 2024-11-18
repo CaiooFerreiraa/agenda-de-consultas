@@ -5,7 +5,7 @@ class Map<K, V> {
 
     data class Entry<K, V>(val key: K, var value: V);
 
-    fun add(key: K, value: V) {
+    fun addMap(key: K, value: V) {
         for (i in 0 until entries.size()) {
             val entry = entries.get(i);
 
@@ -14,7 +14,7 @@ class Map<K, V> {
                 return
             }
         }
-        entries.add(Entry(key, value));
+        entries.addList(Entry(key, value));
     }
 
     fun get(key: K): V? {
@@ -39,19 +39,18 @@ class Map<K, V> {
         return false;
     }
 
-    // Método para obter todas as entradas
+
     fun getEntries(): List<Entry<K, V>> {
         val result = List<Entry<K, V>>()
         for (i in 0 until entries.size()) {
             val entry = entries.get(i)
             if (entry != null) {
-                result.add(entry)
+                result.addList(entry)
             }
         }
         return result
     }
 
-    // Método para obter o número de entradas no mapa
     fun size(): Int {
         return entries.size()
     }

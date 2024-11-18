@@ -13,9 +13,9 @@ class ManagedConsultation {
 
         val consult = Consultation(doctor, patient, dateHour, reason);
 
-        val listConsultation = consultations.get(doctor) ?: List<Consultation>().also() { consultations.add(doctor, it)}
+        val listConsultation = consultations.get(doctor) ?: List<Consultation>().also() { consultations.addMap(doctor, it)}
 
-        listConsultation.add(consult);
+        listConsultation.addList(consult);
         patient.addConsultation(consult);
 
         return true;
@@ -43,7 +43,7 @@ class ManagedConsultation {
         for (i in 0 until doctorsSpecialty.size()) {
             val doctor = doctorsSpecialty.get(i);
             if (doctor != null && doctor.specialty == specialty) {
-                doctorsSpecialty.add(doctor)
+                doctorsSpecialty.addList(doctor)
             }
         }
 
@@ -69,11 +69,11 @@ class ManagedConsultation {
         val before = desiredTime.plusMinutes(30);
 
         if (!doctor.blockTimes.contains(after) && !existsConsultation(doctor, after)) {
-            alternativeTimes.add(after);
+            alternativeTimes.addList(after);
         }
 
         if (!doctor.blockTimes.contains(before) && !existsConsultation(doctor, before)) {
-            alternativeTimes.add(before);
+            alternativeTimes.addList(before);
         }
 
         return alternativeTimes;

@@ -8,7 +8,7 @@ class Doctor(val name: String, val specialty: String, val cm: String, val email:
 
     fun hourBlock(dateHour: LocalDateTime): Boolean {
         if (availableTimes.contains(dateHour)) {
-            blockTimes.add(dateHour);
+            blockTimes.addList(dateHour);
             return true;
         }
         return false;
@@ -25,7 +25,7 @@ class Doctor(val name: String, val specialty: String, val cm: String, val email:
             val hour = availableTimes.get(i);
 
             if (hour != null && !blockTimes.contains(hour)) {
-                schedule.add(hour);
+                schedule.addList(hour);
             }
         }
 
@@ -33,7 +33,7 @@ class Doctor(val name: String, val specialty: String, val cm: String, val email:
     }
 
     fun addAvailableTime(dateHour: LocalDateTime): Boolean {
-        availableTimes.add(dateHour);
+        availableTimes.addList(dateHour);
         return true;
     }
 
