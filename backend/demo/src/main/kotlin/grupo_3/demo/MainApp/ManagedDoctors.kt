@@ -5,7 +5,7 @@ class ManagedDoctors {
     private val doctorsRegister = List<Doctor>();
 
     fun registerDoctor(doctor: Doctor) {
-        doctorsRegister.add(doctor);
+        doctorsRegister.addList(doctor);
     }
 
     fun listConsultationsDoctor(doctor: Doctor) {
@@ -19,6 +19,17 @@ class ManagedDoctors {
                 }
             }
         }
+    }
+
+    fun isDoctor(identifier: String, password: String): Any? {
+        for (i in 0 until doctorsRegister.size()) {
+            val doctor = doctorsRegister.get(i);
+
+            if (doctor?.email == identifier && doctor.password == identifier) {
+                return arrayOf(200, doctor)
+            };
+        }
+        return false;
     }
 
 }

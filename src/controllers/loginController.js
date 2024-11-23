@@ -2,7 +2,7 @@ const index = (req, res) => {
   res.render('login.ejs')
 }
 
-const previus = (req, res) => {
+const previous = (req, res) => {
   res.redirect('/');
 }
 
@@ -19,8 +19,6 @@ const submit = async (req, res) => {
       },
       body: JSON.stringify(data)
     }).then(response => response.json());
-
-    console.log(response)
 
     if (response[0] !== 200) {
       req.flash('error', 'Houve algum erro no login')
@@ -42,6 +40,6 @@ const submit = async (req, res) => {
 
 export default {
   index,
-  previus,
+  previous,
   submit
 }

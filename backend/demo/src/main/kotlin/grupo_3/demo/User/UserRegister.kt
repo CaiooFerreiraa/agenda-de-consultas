@@ -27,7 +27,6 @@ class UserRegister {
 
         for (i in 0 until userArray.size) {
             if (userArray[i]?.cpf == user.cpf) {
-                print(userArray[i]);
                 aux = true;
             }
         }

@@ -2,13 +2,13 @@ package grupo_3.demo.MainApp
 
 import java.time.LocalDateTime
 
-class Doctor(val name: String, val specialty: String, val cm: String, val email: String) {
+class Doctor(val name: String, val specialty: String, val cm: String, val email: String, val password: String?) {
     val availableTimes = List<LocalDateTime>()
     val blockTimes = List<LocalDateTime>();
 
     fun hourBlock(dateHour: LocalDateTime): Boolean {
         if (availableTimes.contains(dateHour)) {
-            blockTimes.add(dateHour);
+            blockTimes.addList(dateHour);
             return true;
         }
         return false;
@@ -25,7 +25,7 @@ class Doctor(val name: String, val specialty: String, val cm: String, val email:
             val hour = availableTimes.get(i);
 
             if (hour != null && !blockTimes.contains(hour)) {
-                schedule.add(hour);
+                schedule.addList(hour);
             }
         }
 
@@ -33,7 +33,7 @@ class Doctor(val name: String, val specialty: String, val cm: String, val email:
     }
 
     fun addAvailableTime(dateHour: LocalDateTime): Boolean {
-        availableTimes.add(dateHour);
+        availableTimes.addList(dateHour);
         return true;
     }
 

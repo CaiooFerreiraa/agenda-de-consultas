@@ -22,7 +22,7 @@ class List<T>: Listable<T> {
         elements = newElements;
     }
 
-    override fun add(element: T) {
+    override fun addList(element: T) {
         if (isFull()) resizeArray();
         pointerEnd++;
         elements[pointerEnd] = element;

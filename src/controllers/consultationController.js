@@ -1,5 +1,4 @@
-import createDoctor from "../models/createDoctor.js";
-import {xContentTypeOptions} from "helmet";
+import { AppointmentModel } from "../models/createDoctor.js";
 
 const index = (req, res) => {
     res.render('make-appointment');
@@ -7,50 +6,26 @@ const index = (req, res) => {
 
 const myAppointment = async (req, res) => {
     try {
-        const {username, ...rest} = req.session.user;
-
-        const data = {
-            name: username,
-            ...rest
-        }
-
-        const response = await fetch('http://192.168.1.151:8000/api/recovery', {
+        const appointments = await fetch('http://192.168.1.151:8000/api/recovery', {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
-        }).then(response => response);
+            body: JSON.stringify(req.session.user)
+        }).then(response => response.json());
 
-        console.log(response);
         return req.session.save(
-            res.render('/myAppointment')
+            res.render('myAppointment', { appointments })
         )
     } catch (e) {
       console.error(e)
-      res.redirect('error')
+      res.render('error')
     }
 }
 
 const marked = async (req, res) => {
     try {
-        const {doctor, date, time, ...restConsult} = req.body
-        const {password, username, ...restUser} = req.session.user;
-
-        const data = {
-            doctor: {
-                ...createDoctor.doctor(doctor)
-            },
-            patient: {
-                name: username,
-                ...restUser
-            },
-            status: "Agendada",
-            date: date + "T" + time,
-            ...restConsult
-        }
-
-        console.log(data)
+        const data = AppointmentModel.formatData(req.session.user, req.body);
 
         const response = await fetch('http://192.168.1.151:8000/api/registerConsultation', {
             method: "post",
@@ -60,7 +35,6 @@ const marked = async (req, res) => {
             body: JSON.stringify(data)
         }).then(response => response);
 
-        console.log(response)
 
         return req.session.save(
             res.redirect(req.get("Referrer"))

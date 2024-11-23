@@ -7,7 +7,7 @@ class RegisterPatients {
         if (patients.get(patient.cpf) != null) {
             return false // Paciente já registrado
         }
-        patients.add(patient.cpf, patient)
+        patients.addMap(patient.cpf, patient)
         return true
     }
 

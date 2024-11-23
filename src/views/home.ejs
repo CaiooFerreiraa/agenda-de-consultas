@@ -11,50 +11,61 @@
     <div class="triangle-left-home"></div>
   </div>
   <div class="container">
-    <div class="row">
-      <div>
-        <button>
-          <a href="/my-appointment">
-            <span class="material-symbols-outlined">person</span>
-          </a>
-        </button>
-        <span>Minhas consultas</span>
+    <!--  Lembrar de caso o usuário logado for um doutor, não mostrar essa home, e sim uma home para o doutor  -->
+
+    <% if (user) { %>
+      <% if (user.cm == null) { %>
+      <div class="row">
+        <div>
+          <button>
+            <a href="/my-appointment">
+              <span class="material-symbols-outlined">person</span>
+            </a>
+          </button>
+          <span>Minhas consultas</span>
+        </div>
+        <div>
+          <button>
+            <a href="/make-appointment">
+              <span class="material-symbols-outlined">calendar_month</span>
+            </a>
+          </button>
+          <span>Marcar consulta</span>
+        </div>
+        <div>
+          <button>
+            <a href="">
+              <span class="material-symbols-outlined">location_on</span>
+            </a>
+          </button>
+          <span>Consultas agendadas</span>
+        </div>
       </div>
-      <div>
-        <button>
-          <a href="/make-appointment">
-            <span class="material-symbols-outlined">calendar_month</span>
-          </a>
-        </button>
-        <span>Marcar consulta</span>
+      <div class="row">
+        <div>
+          <button>
+            <a href="">
+              <span class="material-symbols-outlined">handshake</span>
+            </a>
+          </button>
+          <span>Quem somos nós?</span>
+        </div>
+        <div>
+          <button>
+            <a href="">
+              <span class="material-symbols-outlined">handyman</span>
+            </a>
+          </button>
+          <span>Suporte</span>
+        </div>
       </div>
-      <div>
-        <button>
-          <a href="">
-            <span class="material-symbols-outlined">location_on</span>
-          </a>
-        </button>
-        <span>Consultas agendadas</span>
-      </div>
-    </div>
-    <div class="row">
-      <div>
-        <button>
-          <a href="">
-            <span class="material-symbols-outlined">handshake</span>
-          </a>
-        </button>
-        <span>Quem somos nós?</span>
-      </div>
-      <div>
-        <button>
-          <a href="">
-            <span class="material-symbols-outlined">handyman</span>
-          </a>
-        </button>
-        <span>Suporte</span>
-      </div>
-    </div>
+      <% } else { %>
+        <div>Home do médico</div>
+      <% } %>
+
+    <% } else { %>
+      <div>Faça seu login</div>
+    <% } %>
   </div>
 </div>
 
