@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = ["http://192.168.1.151:8080"]) // Permite requisições de 'http://192.168.1.151:8080'
+@CrossOrigin(origins = ["http://192.168.1.151:8080", "http://192.168.1.153:8080"]) // Permite requisições de 'http://192.168.1.151:8080'
 class MyApiController(private val userRegister: UserRegister = UserRegister(10)) {
 
     val consultation = ManagedConsultation();

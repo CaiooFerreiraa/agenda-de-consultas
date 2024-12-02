@@ -1,7 +1,7 @@
 import express from 'express';
 import router from './routes.js';
 import path from 'path';
-import os from 'os';
+import { getMac } from "./FunctionsAux/functionsAux.js";
 import csrf from 'csurf';
 import flash from 'connect-flash';
 import { createCsrf, csrfError} from './src/middleware/globalMiddleware.js'
@@ -9,10 +9,9 @@ import session from 'express-session';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const networkInterface = os.networkInterfaces();
 const app = express();
 const port = 8080;
-const ip = networkInterface['Wi-Fi'][3].address;
+const ip = getMac();
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.resolve('public')));

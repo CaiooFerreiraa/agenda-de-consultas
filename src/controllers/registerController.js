@@ -1,3 +1,5 @@
+import {getMac} from "../../FunctionsAux/functionsAux.js";
+
 const index = (req, res) => {
     res.render('register');
 };
@@ -6,7 +8,7 @@ const register = async (req, res) => {
     try {
         const data = req.body;
 
-        const response = await fetch('http://192.168.1.151:8000/api/register', {
+        const response = await fetch(`http://${getMac()}:8000/api/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -20,7 +22,7 @@ const register = async (req, res) => {
                 password: data.password
             }
 
-            const login = await fetch('http://192.168.1.151:8000/api/login', {
+            const login = await fetch(`http://${getMac()}:8000/api/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

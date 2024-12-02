@@ -1,4 +1,5 @@
 import { AppointmentModel } from "../models/createDoctor.js";
+import {getMac} from "../../FunctionsAux/functionsAux.js";
 
 const index = (req, res) => {
     res.render('make-appointment');
@@ -6,7 +7,7 @@ const index = (req, res) => {
 
 const myAppointment = async (req, res) => {
     try {
-        const appointments = await fetch('http://192.168.1.151:8000/api/recovery', {
+        const appointments = await fetch(`http://${getMac()}:8000/api/recovery`, {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'
@@ -27,7 +28,7 @@ const marked = async (req, res) => {
     try {
         const data = AppointmentModel.formatData(req.session.user, req.body);
 
-        const response = await fetch('http://192.168.1.151:8000/api/registerConsultation', {
+        const response = await fetch(`http://${getMac()}:8000/api/registerConsultation`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json"
