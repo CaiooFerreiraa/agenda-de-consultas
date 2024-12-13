@@ -31,6 +31,14 @@ router.get('/previous-help', helpController.previous);
 //Routes Doctor
 router.get('/doctor', userRequired, doctorController.index);
 
+router.get('/registerHour', userRequired, doctorController.indexRegisterHour);
+router.get('/unblockHour', userRequired, doctorController.indexUnblockHour);
+router.get('/blockHour', userRequired, doctorController.indexBlockHour);
+
+router.post('/registerHour', userRequired, doctorController.registerHour);
+router.post('/unblockHour', userRequired, doctorController.unblockHour);
+router.post('/blockHour', userRequired, doctorController.blockHour);
+
 //Routes Patient
 router.get('/patient', userRequired, patientController.index);
 
@@ -40,5 +48,8 @@ router.post('/make-appointment', userRequired, consultationController.marked);
 
 //Routes My appointments
 router.get('/my-appointment', userRequired, consultationController.myAppointment);
+
+//Router Logout
+router.get('/logout', userRequired, homeController.logout);
 
 export default router;

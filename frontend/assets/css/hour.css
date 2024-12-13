@@ -1,0 +1,67 @@
+.doctor-tittle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #beffdfac;
+    padding: 10px 0;
+    margin-bottom: 10px;
+}
+
+.register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Define a largura total da div */
+    padding: 20px; /* Adiciona espaço interno opcional */
+}
+
+.register input {
+    margin-bottom: 20px;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 1.6em;
+    border: none;
+    background-color: #cfe4ffbe;
+    font-weight: bold;
+    width: 80%; /* Garante que os inputs ocupem 80% da largura da div */
+    height: 50px; /* Ligeiramente maior para mais conforto */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
+}
+
+.register input:focus {
+    outline: none;
+    background-color: #d9f1ff; /* Cor de fundo ao focar no input */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Realça a sombra no foco */
+}
+
+.register button {
+    padding: 10px 20px;
+    font-size: 1.3em;
+    border: none;
+    border-radius: 15px;
+    background-color: #009546;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transições suaves */
+    width: 50%; /* Botão ocupa 50% da largura da div */
+    text-align: center;
+}
+
+.register button:hover {
+    background-color: #17bc66; /* Cor de fundo no hover */
+    transform: scale(1.05); /* Leve ampliação */
+}
+
+.register button:active {
+    transform: scale(1); /* Restaura ao clicar */
+}
+
+.register form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+

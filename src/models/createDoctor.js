@@ -23,7 +23,16 @@ export class AppointmentModel {
                     name: "Felipe Fernandes Araújo",
                     specialty: "Cardiologísta",
                     cm: "1254",
-                    email: "felipinho@gmail.com"
+                    email: "felipinho@gmail.com",
+                    password: "C@iosant0s"
+                }
+            case "caio":
+                return {
+                    name: "Caio Ferreira Almeida",
+                    specialty: "Cardiologista",
+                    cm: "5682",
+                    email: "cs1919328@gamil.com",
+                    password: "C@iosant0s"
                 }
         }
     }

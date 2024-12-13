@@ -1,0 +1,20 @@
+<div class="body-login">
+    <h2>Seja bem vindo!</h2>
+
+    <%- include('include/msg') %>
+
+    <div>
+        <form action="/login" method="post" class="login-form">
+            <!--<input type="hidden" name="_csrfToken" value=" csrfToken vai aqui">-->
+            <input type="text" name="identifier" id="cpf" placeholder="Informe seu CPF ou Email">
+            <input type="password" name="password" id="password" placeholder="Informe sua senha">
+
+            <%- include('include/button-next')%>
+        </form>
+
+        <div class="links-auxiliares">
+            <button><a href="/recovery-password">Esqueci a senha</a></button>
+            <button><a href="/register">Cadastrar-se</a></button>
+        </div>
+    </div>
+</div>

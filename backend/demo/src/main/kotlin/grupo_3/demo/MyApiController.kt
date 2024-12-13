@@ -6,13 +6,9 @@ import grupo_3.demo.MainApp.ManagedConsultation
 import grupo_3.demo.MainApp.ManagedDoctors
 import grupo_3.demo.MainApp.RegisterPatients
 import grupo_3.demo.MainApp.Patient
-import grupo_3.demo.User.Login
-import grupo_3.demo.User.User
-import grupo_3.demo.User.UserLogin
-import grupo_3.demo.User.UserRegister
-import grupo_3.demo.User.dPatient
-import grupo_3.demo.User.dataConsultation
+import grupo_3.demo.User.*
 import org.springframework.web.bind.annotation.*
+import java.time.LocalDateTime
 
 @RestController
 @RequestMapping("/api")
@@ -26,10 +22,17 @@ class MyApiController(private val userRegister: UserRegister = UserRegister(10))
     init {
         // Lista de médicos pré-cadastrados
         val predefinedDoctors = arrayOf(
-            Doctor("Caio Ferreira Almeida", "Cardiologista", "5682", "cs1919328@gamil.com", "C@iosant0s"),
+            Doctor("Caio Ferreira Almeida", "Cardiologista", "5682", "cs1919328@gmail.com", "C@iosant0s"),
             Doctor("Ana Clara Silva", "Pediatra", "1234", "anaclara@gmail.com", "p"),
             Doctor("Lucas Santos", "Dermatologista", "9876", "lucassantos@gmail.com", "o")
         )
+
+        predefinedDoctors[0].addAvailableTime(LocalDateTime.of(2024, 12,1,8, 0));
+        val test = predefinedDoctors[0].printSchedule()
+
+        for (i in 0 until test.size()) {
+            println(test.get(i))
+        }
 
         // Cadastra os médicos
         for (i in 0 until predefinedDoctors.size) {
@@ -59,16 +62,41 @@ class MyApiController(private val userRegister: UserRegister = UserRegister(10))
 
     @PostMapping("/registerConsultation")
     fun registerConsultation(@RequestBody userData: dataConsultation): Any? {
-        val doc = Doctor(userData.doctor.name, userData.doctor.specialty, userData.doctor.cm, userData.doctor.email, null)
+        val doc = Doctor(
+            userData.doctor.name,
+            userData.doctor.specialty,
+            userData.doctor.cm,
+            userData.doctor.email,
+            userData.doctor.password
+        );
+
         var pat = regPatient.getPatientByCpf(userData.patient.cpf)
+        val arr = doctors.arrayDoctors();
+        var doctorExistent: Doctor? = null;
+
+        for (i in 0 until arr.size) {
+            if (arr.get(i) == doc) {
+                doctorExistent = arr.get(i)
+            }
+        }
 
         if (pat == null) {
-            pat = Patient(userData.patient.name, userData.patient.cpf, userData.patient.email, userData.patient.age)
+            pat = Patient(
+                userData.patient.name,
+                userData.patient.cpf,
+                userData.patient.email,
+                userData.patient.age
+            )
+
             regPatient.register(pat)
         }
 
-        doctors.registerDoctor(doc)
-        consultation.scheduleAppointments(doc, pat, userData.date, userData.reason)
+        if (doctorExistent == null) {
+            doctors.registerDoctor(doc);
+        } else {
+            consultation.scheduleAppointments(doctorExistent, pat, userData.date, userData.reason)
+        }
+
         return "Consulta registrada com sucesso"
     }
 
@@ -84,6 +112,130 @@ class MyApiController(private val userRegister: UserRegister = UserRegister(10))
             // Retorna uma mensagem de erro caso o paciente não seja encontrado
             "Paciente com CPF ${userData.cpf} não encontrado."
         }
+    }
+
+    @PostMapping("/registerHour")
+    fun registerHour(@RequestBody userData: Hour): Int {
+        val doc = Doctor(
+            userData.doctor.name,
+            userData.doctor.specialty,
+            userData.doctor.cm,
+            userData.doctor.email,
+            userData.doctor.password
+        );
+
+        val arr = doctors.arrayDoctors();
+        var doctorExistent: Doctor? = null;
+        var response: Int;
+
+        for (i in 0 until arr.size) {
+            if (arr.get(i) == doc) {
+                doctorExistent = arr.get(i)
+            }
+        }
+
+        if (doctorExistent == null) {
+            doctors.registerDoctor(doc);
+            response = 404;
+        } else {
+            if (doctorExistent.addAvailableTime(userData.date)) response = 200 else response = 404;
+        }
+
+        return response
+    }
+
+    @PostMapping("/unblockHour")
+    fun unblockHour(@RequestBody userData: Hour): Int {
+        val doc = Doctor(
+            userData.doctor.name,
+            userData.doctor.specialty,
+            userData.doctor.cm,
+            userData.doctor.email,
+            userData.doctor.password
+        );
+
+        val arr = doctors.arrayDoctors();
+        var doctorExistent: Doctor? = null;
+        var response: Int;
+
+        for (i in 0 until arr.size) {
+            if (arr.get(i) == doc) {
+                doctorExistent = arr.get(i)
+            }
+        }
+
+        if (doctorExistent == null) {
+            doctors.registerDoctor(doc);
+            response = 404;
+        } else {
+            if (doctorExistent.hourRelease(userData.date)) response = 200 else response = 404;
+        }
+
+        return response
+    }
+
+    @PostMapping("/blockHour")
+    fun blockHour(@RequestBody userData: Hour): Int {
+        val doc = Doctor(
+            userData.doctor.name,
+            userData.doctor.specialty,
+            userData.doctor.cm,
+            userData.doctor.email,
+            userData.doctor.password
+        );
+
+        val arr = doctors.arrayDoctors();
+        var doctorExistent: Doctor? = null;
+        var response: Int;
+
+        for (i in 0 until arr.size) {
+            if (arr.get(i) == doc) {
+                doctorExistent = arr.get(i)
+            }
+        }
+
+        if (doctorExistent == null) {
+            doctors.registerDoctor(doc);
+            response = 404;
+        } else {
+            if (doctorExistent.hourBlock(userData.date)) response = 200 else response = 404;
+        }
+
+        return response
+    }
+
+    @PostMapping("/peekHours")
+    fun peekHours(@RequestBody userData: listHours): Any? {
+        val doc = Doctor(
+            userData.doctor.name,
+            userData.doctor.specialty,
+            userData.doctor.cm,
+            userData.doctor.email,
+            userData.doctor.password
+        );
+
+        val arr = doctors.arrayDoctors();
+        var doctorExistent: Doctor? = null;
+
+        for (i in 0 until arr.size) {
+            if (arr.get(i) == doc) {
+                doctorExistent = arr.get(i)
+            }
+        }
+
+        val scheduled = doctorExistent?.printSchedule()
+        var arrayHour: Array<LocalDateTime?>? = null
+
+        if (scheduled != null) {
+            arrayHour = arrayOfNulls(scheduled.size())
+
+            for (i in 0 until scheduled.size()) {
+                arrayHour[i] = scheduled.get(i)
+            }
+        }
+
+
+        return arrayHour
     }
 
 }

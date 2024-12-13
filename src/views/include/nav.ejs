@@ -4,8 +4,21 @@
       <span>?</span>
     </span>
   </a>
-  <a href="/login">
-    <span>Login</span>
-    <span class="material-symbols-outlined">person</span> 
-  </a>
+  <% if (!user) { %>
+    <a href="/login">
+      <span>Login</span>
+      <span class="material-symbols-outlined">person</span>
+    </a>
+  <% } else { %>
+    <div>
+      <a href="<%= user.cm == null ? '/patient' : '/doctor' %>">
+        <span>Perfil</span>
+        <span class="material-symbols-outlined">person</span>
+      </a>
+      <a href="/logout">
+        <span>Deslogar</span>
+        <span class="material-symbols-outlined">person</span>
+      </a>
+    </div>
+  <% } %>
 </nav>

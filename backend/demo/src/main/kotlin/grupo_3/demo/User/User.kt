@@ -39,3 +39,12 @@ data class dataConsultation(
     var status: String,
     var notes: String
 )
+
+data class Hour (
+    val doctor: Doctor,
+    val date: LocalDateTime,
+)
+
+data class listHours(
+    val doctor: Doctor,
+)

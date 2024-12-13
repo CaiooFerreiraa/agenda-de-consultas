@@ -1,5 +1,16 @@
 <%- include('../include/header')%>
 
-<div>Aqui é a page do Doutor</div>
+
+
+<main>
+
+
+    <div>
+        <p><strong>Especialidade:</strong> <%= user.specialty %></p>
+        <p><strong>Código do Médico:</strong> <%= user.cm %></p>
+        <p><strong>Email:</strong> <%= user.email %></p>
+    </div>
+    <a href="/">Voltar</a>
+</main>
 
 <%- include('../include/footer')%>

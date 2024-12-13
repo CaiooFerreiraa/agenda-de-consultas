@@ -7,12 +7,14 @@ const index = (req, res) => {
 
 const myAppointment = async (req, res) => {
     try {
+        const {password, ...data} = req.session.user
+
         const appointments = await fetch(`http://${getMac()}:8000/api/recovery`, {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(req.session.user)
+            body: JSON.stringify(data)
         }).then(response => response.json());
 
         return req.session.save(

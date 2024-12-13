@@ -60,11 +60,40 @@
         </div>
       </div>
       <% } else { %>
-        <div>Home do médico</div>
+        <div class="container" style="margin-top: 2%;">
+          <div class="row">
+            <div>
+              <button>
+                <a href="/registerHour">
+                  <span class="material-symbols-outlined">calendar_add_on</span>
+                </a>
+              </button>
+              <span>Cadastrar horarios</span>
+            </div>
+            <div>
+              <button>
+                <a href="/unblockHour">
+                  <span class="material-symbols-outlined">edit_calendar</span>
+                </a>
+              </button>
+              <span>Desbloquear horario</span>
+            </div>
+            <div>
+              <button>
+                <a href="/blockHour">
+                  <span class="material-symbols-outlined">free_cancellation</span>
+                </a>
+              </button>
+              <span>Bloquear horario</span>
+            </div>
+          </div>
+        </div>
       <% } %>
 
     <% } else { %>
-      <div>Faça seu login</div>
+      <main style="width: 90%;margin-top: -90px; font-size: 1.2em">
+        <%- include('./bodyLogin')%>
+      </main>
     <% } %>
   </div>
 </div>

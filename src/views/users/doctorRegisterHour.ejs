@@ -1,0 +1,21 @@
+<%- include('../include/header')%>
+
+<div class="main">
+    <%- include('../include/login-header')%>
+
+    <div class="doctor-tittle">
+        <h1>Cadastrar Horário</h1>
+        <span>Área do Doutor</span>
+    </div>
+
+    <div class="register">
+        <%- include('../include/msg')%>
+        <form action="/registerHour" class="min-form" method="post">
+            <input type="date" name="date-available" id="date-available">
+            <input type="time" name="time-available" id="time-available">
+            <button id="cad-hour">Cadastrar Horário</button>
+        </form>
+    </div>
+</div>
+
+<%- include('../include/footer')%>

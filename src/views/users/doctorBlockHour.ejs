@@ -1,0 +1,29 @@
+<%- include('../include/header')%>
+
+<div class="main">
+    <%- include('../include/login-header')%>
+
+    <div class="doctor-tittle">
+        <h1>Bloquear Horário</h1>
+        <span>Área do Doutor</span>
+    </div>
+
+    <div class="register">
+        <div class="hourList" style="margin-bottom: 10px; overflow-y: scroll;height: 50px;">
+            <strong>Horários que podem ser bloqueados:</strong>
+            <% arrayHours.forEach(function(hour) { %>
+                <div class="hour-item">
+                    <p><strong>Horário:</strong> <%= hour %></p>
+                </div>
+            <% }) %>
+        </div>
+
+        <form action="/blockHour" class="min-form" method="post">
+            <input type="date" name="date-available" id="date-available">
+            <input type="time" name="time-available" id="time-available">
+            <button id="cad-hour">Bloquear Horário</button>
+        </form>
+    </div>
+</div>
+
+<%- include('../include/footer')%>
