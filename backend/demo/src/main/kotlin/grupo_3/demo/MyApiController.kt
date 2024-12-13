@@ -22,7 +22,7 @@ class MyApiController(private val userRegister: UserRegister = UserRegister(10))
     init {
         // Lista de médicos pré-cadastrados
         val predefinedDoctors = arrayOf(
-            Doctor("Caio Ferreira Almeida", "Cardiologista", "5682", "cs1919328@gmail.com", "C@iosant0s"),
+            Doctor("Caio Ferreira Almeida", "Cardiologista", "5682", "cs1919238@gmail.com", "testando"),
             Doctor("Ana Clara Silva", "Pediatra", "1234", "anaclara@gmail.com", "p"),
             Doctor("Lucas Santos", "Dermatologista", "9876", "lucassantos@gmail.com", "o")
         )
