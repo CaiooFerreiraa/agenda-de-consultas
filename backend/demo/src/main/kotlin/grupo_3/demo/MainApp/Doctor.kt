@@ -43,8 +43,9 @@ class Doctor(val name: String, val specialty: String, val cm: String, val email:
     }
 
     override fun toString(): String {
-        return "Medico(nome='$name', specialty='$specialty', email='$email', password='$password')"
+        return "Medico(name='$name', specialty='$specialty', cm='$cm', email='$email', password='$password')"
     }
+
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

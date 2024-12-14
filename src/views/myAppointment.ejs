@@ -1,23 +1,43 @@
-<h1>Lista de Consultas</h1>
+<%- include('include/header') %>
 
-<% appointments.forEach((consulta, index) => { %>
-    <h2>Consulta <%= index + 1 %></h2>
+<main class="main">
+    <div class="header">
+        <%- include('include/nav.ejs') %>
+        <div class="tittle">
+            <h1 style="color: white">SAÚDE</h1>
+            <h2 style="color: white">Agenda de Consultas</h2>
+        </div>
+        <div class="triangle-right-home"></div>
+        <div class="triangle-left-home"></div>
+    </div>
 
-    <!-- Informações do Médico -->
-    <p>Médico: <%= consulta.doctorName %> (<%= consulta.doctorSpecialty %>)</p>
-    <p>E-mail do Médico: <%= consulta.doctorEmail %></p>
-    <p>CRM: <%= consulta.doctorCm %></p>
+    <h1>Lista de Consultas</h1>
 
-    <!-- Informações do Paciente -->
-    <p>Paciente: <%= consulta.patientName %> (<%= consulta.patientCpf %>)</p>
-    <p>E-mail do Paciente: <%= consulta.patientEmail %></p>
-    <p>Idade: <%= consulta.patientAge %> anos</p>
+    <div class="container">
+        <% appointments.forEach((consulta, index) => { %>
+            <div class="appo">
+                <h2>Consulta <%= index + 1 %></h2>
 
-    <!-- Informações da Consulta -->
-    <p>Data e Hora: <%= consulta.dateHour %></p>
-    <p>Motivo: <%= consulta.reason %></p>
-    <p>Notas: <%= consulta.notes ? consulta.notes : "Sem notas adicionais" %></p>
-    <p>Status: <%= consulta.status %></p>
+                <!-- Informações do Médico -->
+                <p><strong>Médico:</strong> <%= consulta.doctorName %> (<%= consulta.doctorSpecialty %>)</p>
+                <p><strong>E-mail do Médico:</strong> <%= consulta.doctorEmail %></p>
+                <p><strong>CRM:</strong> <%= consulta.doctorCm %></p>
 
-    <hr>
-<% }) %>
+                <!-- Informações do Paciente -->
+                <p><strong>Paciente:</strong> <%= consulta.patientName %> (<%= consulta.patientCpf %>)</p>
+                <p><strong>E-mail do Paciente:</strong> <%= consulta.patientEmail %></p>
+                <p><strong>Idade:</strong> <%= consulta.patientAge %> anos</p>
+
+                <!-- Informações da Consulta -->
+                <p><strong>Data e Hora:</strong> <%= consulta.dateHour %></p>
+                <p><strong>Motivo:</strong> <%= consulta.reason %></p>
+                <p><strong>Notas:</strong> <%= consulta.notes ? consulta.notes : "Sem notas adicionais" %></p>
+                <p><strong>Status:</strong> <%= consulta.status %></p>
+
+                <hr>
+            </div>
+        <% }) %>
+    </div>
+</main>
+
+<%- include('include/footer') %>

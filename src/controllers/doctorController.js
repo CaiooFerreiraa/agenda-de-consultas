@@ -47,8 +47,6 @@ const registerHour = async (req, res) => {
         body: JSON.stringify(data)
     }).then(res => res.status)
 
-    console.log(response)
-
     if (!response && response.status !== 200) {
         req.flash('error', "Não foi possível registar o horário")
 

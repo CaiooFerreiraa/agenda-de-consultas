@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+:root {
+    --color-blue: #004daa;
+    --color-green: #2ecc71;
+    --background-light: #cfe4ffbe;
+    --text-dark: #333;
+    --text-light: #fff;
+    --radius: 15px;
+}
+
+form {
+    padding: 20px;
+    border-radius: var(--radius);
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+form label {
+    display: block;
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--color-blue);
+}
+
+form input {
+    margin-bottom: 10px;
+}
+
+form select, form input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: var(--radius);
+    color: var(--text-dark);
+    background-color: var(--background-light);
+}
+
+form select:focus, form input:focus {
+    outline: none;
+    border-color: var(--color-green);
+    box-shadow: 0 0 5px var(--color-green);
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--text-light);
+    background-color: var(--color-green);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #27ae60;
+}

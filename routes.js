@@ -44,6 +44,7 @@ router.get('/patient', userRequired, patientController.index);
 
 //Routes Make Appointment
 router.get('/make-appointment', userRequired, consultationController.index);
+router.post('/peek', userRequired, consultationController.peekHoursTheDoctor);
 router.post('/make-appointment', userRequired, consultationController.marked);
 
 //Routes My appointments

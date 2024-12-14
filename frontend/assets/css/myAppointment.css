@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+:root {
+    --color-blue: #004daa;
+    --color-green: #2ecc71;
+    --background-light: #f9f9f9;
+    --border-gray: #ddd;
+    --text-dark: #333;
+    --heading-color: #2c3e50;
+    --radius: 10px;
+}
+
+h1 {
+    text-align: center;
+    color: var(--color-blue);
+    margin-top: 20px;
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+    color: var(--heading-color);
+    margin-bottom: 10px;
+}
+
+p {
+    margin: 5px 0;
+    color: var(--text-dark);
+}
+
+p strong {
+    color: var(--color-blue);
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-color: var(--border-gray);
+    margin: 20px 0;
+}
+
+.appo {
+    background-color: var(--background-light);
+    width: 80%;
+    border-radius: 5px;
+    box-shadow: 1px 2px 4px 4px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+}

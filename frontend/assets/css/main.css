@@ -1,3 +1,11 @@
+@import './home.css';
+@import './login.css';
+@import './register.css';
+@import "./hour.css";
+@import "markedAppointment.css";
+@import "myAppointment.css";
+@import "doctor.css";
+
 .material-symbols-outlined {
   font-family: 'Material Symbols Outlined';
   font-weight: normal;
@@ -30,7 +38,4 @@ body {
   width: 100%;
 }
 
-@import './home.css';
-@import './login.css';
-@import './register.css';
-@import "./hour.css";
+

@@ -1,7 +1,7 @@
 export class AppointmentModel {
     static formatData(userData, appointmentData) {
-        const {doctor, date, time, ...restConsult} = appointmentData
-        const {password, ...restUser} = userData;
+        const { doctor, time, ...restConsult } = appointmentData;
+        const { password, ...restUser } = userData;
 
         return {
             doctor: {
@@ -11,28 +11,29 @@ export class AppointmentModel {
                 ...restUser
             },
             status: "Agendada",
-            date: date + "T" + time,
+            date: time, // Agora `time` já está no formato ISO `YYYY-MM-DDTHH:mm:ss`
             ...restConsult
-        }
+        };
     }
+
 
     static createDoctor(doctorName) {
         switch (doctorName) {
             case "felipe":
                 return {
-                    name: "Felipe Fernandes Araújo",
-                    specialty: "Cardiologísta",
+                    name: "Felipe Fernandes Araujo",
+                    specialty: "Pediatra",
                     cm: "1254",
                     email: "felipinho@gmail.com",
-                    password: "C@iosant0s"
+                    password: "p"
                 }
             case "caio":
                 return {
                     name: "Caio Ferreira Almeida",
                     specialty: "Cardiologista",
                     cm: "5682",
-                    email: "cs1919328@gamil.com",
-                    password: "C@iosant0s"
+                    email: "cs1919238@gmail.com",
+                    password: "testando"
                 }
         }
     }

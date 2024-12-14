@@ -23,7 +23,7 @@ class MyApiController(private val userRegister: UserRegister = UserRegister(10))
         // Lista de médicos pré-cadastrados
         val predefinedDoctors = arrayOf(
             Doctor("Caio Ferreira Almeida", "Cardiologista", "5682", "cs1919238@gmail.com", "testando"),
-            Doctor("Ana Clara Silva", "Pediatra", "1234", "anaclara@gmail.com", "p"),
+            Doctor("Felipe Fernandes Araujo", "Pediatra", "1234", "felipinho@gmail.com", "p"),
             Doctor("Lucas Santos", "Dermatologista", "9876", "lucassantos@gmail.com", "o")
         )
 
@@ -69,6 +69,8 @@ class MyApiController(private val userRegister: UserRegister = UserRegister(10))
             userData.doctor.email,
             userData.doctor.password
         );
+
+        println(userData.date)
 
         var pat = regPatient.getPatientByCpf(userData.patient.cpf)
         val arr = doctors.arrayDoctors();
@@ -212,7 +214,7 @@ class MyApiController(private val userRegister: UserRegister = UserRegister(10))
             userData.doctor.cm,
             userData.doctor.email,
             userData.doctor.password
-        );
+        )
 
         val arr = doctors.arrayDoctors();
         var doctorExistent: Doctor? = null;
@@ -233,7 +235,6 @@ class MyApiController(private val userRegister: UserRegister = UserRegister(10))
                 arrayHour[i] = scheduled.get(i)
             }
         }
-
 
         return arrayHour
     }

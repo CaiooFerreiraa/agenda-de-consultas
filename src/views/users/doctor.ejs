@@ -2,15 +2,20 @@
 
 
 
-<main>
+<main class="main">
+    <%- include('../include/login-header')%>
 
-
-    <div>
-        <p><strong>Especialidade:</strong> <%= user.specialty %></p>
-        <p><strong>Código do Médico:</strong> <%= user.cm %></p>
-        <p><strong>Email:</strong> <%= user.email %></p>
+    <div class="container">
+        <div class="photo">
+            <img src="/assets/imgs/doctor.jpg" alt="">
+        </div>
+        <div class="info">
+            <p><strong>Nome:</strong> <%= user.name %></p>
+            <p><strong>Especialidade:</strong> <%= user.specialty %></p>
+            <p><strong>Código do Médico:</strong> <%= user.cm %></p>
+            <p><strong>Email:</strong> <%= user.email %></p>
+        </div>
     </div>
-    <a href="/">Voltar</a>
 </main>
 
 <%- include('../include/footer')%>

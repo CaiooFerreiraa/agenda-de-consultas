@@ -15,7 +15,8 @@ data class appointmentData(
 
     val reason: String,
     val notes: String,
-    val status: String
+    val status: String,
+    val dateHour: LocalDateTime
 )
 
 class Consultation(
@@ -51,6 +52,7 @@ class Consultation(
             patientEmail = patient.email,
             patientAge = patient.age,
 
+            dateHour = dateHour,
             reason = reason,
             notes = notes,
             status = status

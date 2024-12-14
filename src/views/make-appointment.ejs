@@ -1,17 +1,38 @@
 <%- include('include/header')%>
 
-<form action="/make-appointment" method="post">
-    <select name="doctor" id="doctor">
-        <option value="" selected >Escolha o seu médico</option>
-        <option value="felipe">Felipe Fernandes Araújo</option>
-        <option value="joão">João Lucas Matos Ferreira</option>
-        <option value="caio">Caio Ferreira Almeida</option>
-    </select>
-    <input type="date" name="date" id="date">
-    <input type="time" name="time" id="time">
-    <input type="text" name="reason" id="reason">
-    <input type="text" name="notes" id="notes">
-    <button type="submit">Enviar</button>
-</form>
+
+<main class="main">
+    <%- include('include/login-header.ejs') %>
+    <%- include('include/tittle/tittle-header')%>
+    <h1 style="font-size: 1.5em; color: black">Cadastrar Consulta</h1>
+    <span >Área do usuário</span>
+    <%- include('include/tittle/tittle-footer')%>
+
+    <div class="container">
+        <form action="/make-appointment" method="post" id="form-appointment">
+
+            <div>
+                <label for="doctor">Escolha o seu médico:</label>
+                <select name="doctor" id="doctor">
+                    <option value="" selected>Escolha o seu médico</option>
+                    <option value="felipe">Felipe Fernandes Araujo</option>
+                    <option value="caio">Caio Ferreira Almeida</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="timeSlots">Escolha o horário:</label>
+                <select name="time" id="timeSlots">
+                    <option value="" selected>Escolha o horário</option>
+                </select>
+            </div>
+
+            <input type="text" name="reason" id="reason" placeholder="Motivo da consulta">
+            <input type="text" name="notes" id="notes" placeholder="Observações">
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+</main>
+
 
 <%- include('include/footer')%>

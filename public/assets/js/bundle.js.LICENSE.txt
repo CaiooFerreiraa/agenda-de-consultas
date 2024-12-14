@@ -12,11 +12,17 @@
 
 /*! !../../../node_modules/style-loader/dist/runtime/styleTagTransform.js */
 
+/*! -!../../../node_modules/css-loader/dist/cjs.js!./doctor.css */
+
 /*! -!../../../node_modules/css-loader/dist/cjs.js!./home.css */
 
 /*! -!../../../node_modules/css-loader/dist/cjs.js!./hour.css */
 
 /*! -!../../../node_modules/css-loader/dist/cjs.js!./login.css */
+
+/*! -!../../../node_modules/css-loader/dist/cjs.js!./markedAppointment.css */
+
+/*! -!../../../node_modules/css-loader/dist/cjs.js!./myAppointment.css */
 
 /*! -!../../../node_modules/css-loader/dist/cjs.js!./register.css */
 
@@ -1179,6 +1185,8 @@
 /*! ./assets/js/doctor.js */
 
 /*! core-js/stable/index.js */
+
+/*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
 
 /*! regenerator-runtime/runtime.js */
 
@@ -3514,6 +3522,10 @@
   !*** ./node_modules/core-js/internals/object-get-own-property-descriptor.js ***!
   \******************************************************************************/
 
+/*!******************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./frontend/assets/css/doctor.css ***!
+  \******************************************************************************/
+
 /*!*******************************************************************************!*\
   !*** ./node_modules/core-js/internals/promise-statics-incorrect-iteration.js ***!
   \*******************************************************************************/
@@ -3553,3 +3565,11 @@
 /*!*************************************************************************************!*\
   !*** ./node_modules/core-js/internals/typed-array-constructors-require-wrappers.js ***!
   \*************************************************************************************/
+
+/*!*************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./frontend/assets/css/myAppointment.css ***!
+  \*************************************************************************************/
+
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./frontend/assets/css/markedAppointment.css ***!
+  \*****************************************************************************************/
