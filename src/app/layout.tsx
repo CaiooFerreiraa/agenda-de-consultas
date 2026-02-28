@@ -8,16 +8,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "MedSchedule | Sua Saúde em Primeiro Lugar",
+  title: "Conecta Saúde | Sua Saúde em Primeiro Lugar",
   description: "Plataforma moderna para agendamentos de consultas médicas.",
-  icons: {
-    icon: [
-      { url: "/favicon.png?v=2", type: "image/png" },
-      { url: "/favicon-medical.svg?v=2", type: "image/svg+xml" },
-    ],
-    apple: "/favicon.png?v=2",
-    shortcut: "/favicon.png?v=2",
-  },
 };
 
 export default function RootLayout({

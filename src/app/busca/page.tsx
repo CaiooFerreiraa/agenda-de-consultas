@@ -37,7 +37,7 @@ export default async function BuscaPage(props: { searchParams: Promise<{ query?:
             <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20 group-hover:bg-primary/90 transition-all">
               <ArrowLeft className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold tracking-tight text-neutral-900 hidden sm:block">MedSchedule</span>
+            <span className="text-xl font-bold tracking-tight text-neutral-900 hidden sm:block">Conecta Saúde</span>
           </Link>
 
           <div className="flex-1 max-w-2xl px-4 md:px-8">
@@ -201,7 +201,7 @@ export default async function BuscaPage(props: { searchParams: Promise<{ query?:
       <footer className="py-8 bg-white border-t border-neutral-100 mt-auto">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <p className="text-[10px] uppercase font-black text-neutral-400 tracking-[0.2em]">
-            © {new Date().getFullYear()} MedSchedule
+            © {new Date().getFullYear()} Conecta Saúde
           </p>
         </div>
       </footer>

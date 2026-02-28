@@ -1,8 +1,12 @@
 {
-  "name": "MedSchedule",
-  "short_name": "MedSchedule",
+  "name": "Conecta Saúde",
+  "short_name": "Conecta Saúde",
   "icons": [
-    { "src": "/favicon-medical.svg", "sizes": "any", "type": "image/svg+xml" }
+    {
+      "src": "/favicon-medical.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
   ],
   "start_url": "/",
   "display": "standalone",

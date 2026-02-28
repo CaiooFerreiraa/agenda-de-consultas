@@ -37,7 +37,7 @@ export default async function Home(props: { searchParams: Promise<{ query?: stri
             <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20">
               <Stethoscope className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold tracking-tight text-neutral-900">MedSchedule</span>
+            <span className="text-xl font-bold tracking-tight text-neutral-900">Conecta Saúde</span>
           </Link>
 
           <div className="flex-1 max-w-md hidden md:block">
@@ -340,7 +340,7 @@ export default async function Home(props: { searchParams: Promise<{ query?: stri
             <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20">
               <Stethoscope className="w-5 h-5 text-white" />
             </div>
-            <span className="text-lg font-bold tracking-tight text-neutral-900 border-r border-neutral-200 pr-4 mr-1">MedSchedule</span>
+            <span className="text-lg font-bold tracking-tight text-neutral-900 border-r border-neutral-200 pr-4 mr-1">Conecta Saúde</span>
             <span className="text-xs font-bold text-neutral-400 uppercase tracking-widest">Marketplace</span>
           </div>
           <div className="flex flex-col md:flex-row items-center gap-8">
@@ -350,7 +350,7 @@ export default async function Home(props: { searchParams: Promise<{ query?: stri
               <Link href="#" className="hover:text-primary transition-colors">Suporte</Link>
             </div>
             <p className="text-[10px] uppercase font-black text-neutral-400 tracking-[0.2em]">
-              © {new Date().getFullYear()} MedSchedule
+              © {new Date().getFullYear()} Conecta Saúde
             </p>
           </div>
         </div>

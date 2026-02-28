@@ -32,7 +32,7 @@ export function RegisterForm() {
           <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20">
             <Stethoscope className="w-5 h-5 text-white" />
           </div>
-          <span className="text-xl font-black text-neutral-900 tracking-tight">MedSchedule</span>
+          <span className="text-xl font-black text-neutral-900 tracking-tight">Conecta Saúde</span>
         </Link>
       </div>
 
@@ -203,7 +203,7 @@ export function RegisterForm() {
         </form>
 
         <p className="text-center text-sm text-neutral-400 mt-10 font-medium">
-          Já faz parte da MedSchedule?{" "}
+          Já faz parte da Conecta Saúde?{" "}
           <Link href="/login" className="text-primary font-bold hover:underline">
             Acesse sua conta
           </Link>

@@ -1,7 +1,7 @@
-# Contexto do Projeto: MedSchedule Marketplace
+# Contexto do Projeto: Conecta Saúde Marketplace
 
 ## Descrição
-O MedSchedule é uma plataforma robusta de marketplace de saúde que conecta pacientes a médicos de diversas especialidades e provê infraestrutura para hospitais acionarem profissionais sob demanda. O sistema gerencia perfis públicos, agendas dinâmicas e fluxos de agendamento em tempo real.
+O Conecta Saúde é uma plataforma robusta de marketplace de saúde que conecta pacientes a médicos de diversas especialidades e provê infraestrutura para hospitais acionarem profissionais sob demanda. O sistema gerencia perfis públicos, agendas dinâmicas e fluxos de agendamento em tempo real.
 
 ## Stack / Tecnologias
 - **Frontend**: Next.js 15 (App Router), Tailwind CSS, Lucide React, shadcn/ui.
@@ -30,6 +30,7 @@ O MedSchedule é uma plataforma robusta de marketplace de saúde que conecta pac
 - **Correção de Build Vercel**: Adição do script `postinstall: prisma generate` no `package.json` para evitar erros de inicialização do cliente Prisma durante o deploy.
 - **Correção TypeScript (Prisma Config)**: Adição de assertion `as string` em `process.env.DATABASE_URL` no `prisma.config.ts` para resolver erro do compilador durante o build local e no deploy.
 - **Identidade Visual (Favicon)**: Implementação do novo favicon institucional enviado pelo usuário em alta resolução (PNG) para consolidar a marca.
+- **Rebranding**: Alteração do nome do sistema de "MedSchedule" para "Conecta Saúde" em toda a interface, metadados e documentação do agente.
 
 ## Notas de Desenvolvimento
 - Sempre utilizar `.agent/database.md` e `.agent/design.md` como guias antes de novas features.

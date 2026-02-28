@@ -19,7 +19,7 @@ export function LoginForm() {
           <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
             <Stethoscope className="w-5 h-5 text-white" />
           </div>
-          <span className="text-xl font-bold text-neutral-900">MedSchedule</span>
+          <span className="text-xl font-bold text-neutral-900">Conecta Saúde</span>
         </Link>
       </div>
 

@@ -3,7 +3,7 @@ import { LoginForm } from "@/components/auth/login-form";
 import { Stethoscope, ShieldCheck, Users } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Login | MedSchedule",
+  title: "Login | Conecta Saúde",
 };
 
 export default function LoginPage() {
@@ -22,7 +22,7 @@ export default function LoginPage() {
             <div className="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center">
               <Stethoscope className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold">MedSchedule</span>
+            <span className="text-xl font-bold">Conecta Saúde</span>
           </div>
 
           <h2 className="text-4xl font-extrabold leading-tight mb-6 tracking-tight">

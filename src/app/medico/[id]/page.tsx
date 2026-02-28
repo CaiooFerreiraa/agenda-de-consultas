@@ -44,7 +44,7 @@ export default async function DoctorProfilePage(props: { params: Promise<{ id: s
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
               <Stethoscope className="w-4 h-4 text-white" />
             </div>
-            <span className="text-lg font-bold tracking-tight text-neutral-900">MedSchedule</span>
+            <span className="text-lg font-bold tracking-tight text-neutral-900">Conecta Saúde</span>
           </div>
 
           <div className="flex items-center gap-3">
@@ -195,7 +195,7 @@ export default async function DoctorProfilePage(props: { params: Promise<{ id: s
       <footer className="py-12 bg-neutral-900 text-neutral-500 text-sm mt-20 border-t border-neutral-800">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <p className="font-playfair font-bold text-neutral-300 mb-4 flex items-center justify-center gap-2">
-            <Stethoscope className="w-4 h-4 text-primary" /> MedSchedule Marketplace
+            <Stethoscope className="w-4 h-4 text-primary" /> Conecta Saúde Marketplace
           </p>
           <p className="text-xs max-w-sm mx-auto mb-8 opacity-60">Plataforma dedicada a aproximar profissionais de saúde e pacientes com transparência e inovação tecnológica.</p>
           <div className="flex justify-center gap-6 text-xs font-semibold uppercase tracking-widest text-neutral-600">

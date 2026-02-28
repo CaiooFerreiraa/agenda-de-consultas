@@ -42,7 +42,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
             <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20 group-hover:scale-105 transition-transform">
               <Stethoscope className="w-5 h-5 text-white" />
             </div>
-            <span className="text-lg font-black text-neutral-900 tracking-tight">MedSchedule</span>
+            <span className="text-lg font-black text-neutral-900 tracking-tight">Conecta Saúde</span>
           </Link>
         </div>
 
@@ -112,7 +112,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
           <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
             <Stethoscope className="w-4 h-4 text-white" />
           </div>
-          <span className="font-bold text-neutral-900 text-sm">MedSchedule</span>
+          <span className="font-bold text-neutral-900 text-sm">Conecta Saúde</span>
         </Link>
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center text-white text-xs font-bold">
