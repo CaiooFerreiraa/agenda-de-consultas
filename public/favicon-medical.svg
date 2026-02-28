@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 768" width="200" height="200">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1BA0C9"/>
+      <stop offset="100%" stop-color="#0E8BA6"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Rounded background -->
+  <rect width="768" height="768" rx="120" fill="url(#grad1)"/>
+  
+  <!-- Medical cross (main shape) -->
+  <g fill="white">
+    <!-- Top bar of cross -->
+    <rect x="260" y="120" width="248" height="200" rx="30"/>
+    <!-- Left bar of cross -->
+    <rect x="120" y="260" width="200" height="248" rx="30"/>
+    <!-- Right bar of cross -->
+    <rect x="448" y="260" width="200" height="248" rx="30"/>
+    <!-- Bottom bar of cross -->
+    <rect x="260" y="448" width="248" height="200" rx="30"/>
+  </g>
+  
+  <!-- Search circle (magnifying glass lens) -->
+  <circle cx="520" cy="480" r="140" fill="none" stroke="white" stroke-width="50"/>
+  
+  <!-- Search stick/handle -->
+  <line x1="620" y1="580" x2="680" y2="640" stroke="white" stroke-width="50" stroke-linecap="round"/>
+  
+  <!-- Location point below circle -->
+  <circle cx="520" cy="680" r="24" fill="white"/>
+</svg>

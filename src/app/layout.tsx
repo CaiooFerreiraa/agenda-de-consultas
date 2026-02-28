@@ -11,7 +11,12 @@ export const metadata: Metadata = {
   title: "MedSchedule | Sua Saúde em Primeiro Lugar",
   description: "Plataforma moderna para agendamentos de consultas médicas.",
   icons: {
-    icon: "/favicon.svg",
+    icon: [
+      { url: "/favicon-medical.svg", type: "image/svg+xml" },
+      { url: "/favicon.svg", type: "image/svg+xml" }
+    ],
+    apple: "/favicon-medical.svg",
+    shortcut: "/favicon-medical.svg",
   },
 };
 

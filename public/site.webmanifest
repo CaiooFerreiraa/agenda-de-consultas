@@ -1,0 +1,11 @@
+{
+  "name": "MedSchedule",
+  "short_name": "MedSchedule",
+  "icons": [
+    { "src": "/favicon-medical.svg", "sizes": "any", "type": "image/svg+xml" }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb"
+}
