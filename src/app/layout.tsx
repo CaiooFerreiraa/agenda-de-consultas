@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -7,14 +7,9 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "Agenda de Consultas",
-  description: "Plataforma minimalista e premium para agendamentos.",
+  title: "MedSchedule | Sua Saúde em Primeiro Lugar",
+  description: "Plataforma moderna para agendamentos de consultas médicas.",
 };
 
 export default function RootLayout({
@@ -23,9 +18,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className="scroll-smooth">
       <body
-        className={`${inter.variable} ${playfair.variable} antialiased`}
+        className={`${inter.variable} font-sans antialiased selection:bg-primary selection:text-white`}
       >
         {children}
       </body>

@@ -16,6 +16,7 @@ export async function createAppointmentAction(prevState: any, formData: FormData
 
     const doctorId = formData.get("doctorId") as string;
     const timeSlotId = formData.get("timeSlotId") as string;
+    const serviceId = formData.get("serviceId") as string;
     const notes = formData.get("notes") as string;
 
     if (!doctorId || !timeSlotId) {
@@ -28,7 +29,7 @@ export async function createAppointmentAction(prevState: any, formData: FormData
 
     const useCase = new ManageAppointmentUseCase(appointmentRepo, timeSlotRepo, userRepo);
 
-    await useCase.create(session.user.id, doctorId, timeSlotId, notes);
+    await useCase.create(session.user.id, doctorId, timeSlotId, notes, serviceId);
 
     revalidatePath("/dashboard/consultas");
     return { success: true };
@@ -37,7 +38,7 @@ export async function createAppointmentAction(prevState: any, formData: FormData
   }
 }
 
-export async function cancelAppointmentAction(appointmentId: string) {
+export async function cancelAppointmentAction(appointmentId: string, formData?: FormData) {
   try {
     const session = await auth();
     if (!session || session.user.role !== 'PATIENT') {
@@ -64,9 +65,6 @@ export async function listPatientAppointments() {
   if (!session || session.user.role !== 'PATIENT') return [];
 
   const appointmentRepo = new PrismaAppointmentRepository();
-  const timeSlotRepo = new PrismaTimeSlotRepository();
-  const userRepo = new PrismaUserRepository();
 
-  const useCase = new ManageAppointmentUseCase(appointmentRepo, timeSlotRepo, userRepo);
-  return useCase.list(session.user.id);
+  return appointmentRepo.findByPatientId(session.user.id);
 }

@@ -7,4 +7,6 @@ export interface TimeSlotRepository {
   findByDoctorId(doctorId: string): Promise<TimeSlotEntity[]>;
   update(id: string, data: Partial<TimeSlotEntity>): Promise<TimeSlotEntity>;
   delete(id: string): Promise<void>;
+  syncBlockedDays(doctorId: string, dates: Date[]): Promise<void>;
+  bulkCreate(slots: Omit<TimeSlotEntity, "id">[]): Promise<void>;
 }

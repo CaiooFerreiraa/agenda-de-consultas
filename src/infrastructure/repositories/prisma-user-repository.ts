@@ -24,8 +24,28 @@ export class PrismaUserRepository implements UserRepository {
         role: data.role,
         specialty: data.specialty,
         crm: data.crm,
+        bio: data.bio,
+        price: data.price,
       },
     });
     return user as UserEntity;
+  }
+
+  async findDoctors(query?: string): Promise<UserEntity[]> {
+    const whereClause: any = { role: "DOCTOR" };
+
+    if (query) {
+      whereClause.OR = [
+        { name: { contains: query, mode: "insensitive" } },
+        { specialty: { contains: query, mode: "insensitive" } }
+      ];
+    }
+
+    const doctors = await prisma.user.findMany({
+      where: whereClause,
+      orderBy: { name: "asc" }
+    });
+
+    return doctors as UserEntity[];
   }
 }

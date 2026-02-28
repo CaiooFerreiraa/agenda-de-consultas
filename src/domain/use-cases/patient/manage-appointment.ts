@@ -10,7 +10,7 @@ export class ManageAppointmentUseCase {
     private userRepository: UserRepository
   ) { }
 
-  async create(patientId: string, doctorId: string, timeSlotId: string, notes?: string): Promise<AppointmentEntity> {
+  async create(patientId: string, doctorId: string, timeSlotId: string, notes?: string, serviceId?: string): Promise<AppointmentEntity> {
     const timeSlot = await this.timeSlotRepository.findById(timeSlotId);
 
     if (!timeSlot) {
@@ -49,6 +49,7 @@ export class ManageAppointmentUseCase {
       timeSlotId,
       status: 'SCHEDULED',
       notes: notes || null,
+      serviceId: serviceId || null,
     });
 
     return appointment;

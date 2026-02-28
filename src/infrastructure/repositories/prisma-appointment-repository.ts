@@ -9,11 +9,12 @@ export class PrismaAppointmentRepository implements AppointmentRepository {
         patientId: data.patientId,
         doctorId: data.doctorId,
         timeSlotId: data.timeSlotId,
+        serviceId: data.serviceId,
         status: data.status,
         notes: data.notes,
       },
     });
-    return appointment as AppointmentEntity;
+    return appointment as unknown as AppointmentEntity;
   }
 
   async findById(id: string): Promise<AppointmentEntity | null> {
@@ -23,6 +24,7 @@ export class PrismaAppointmentRepository implements AppointmentRepository {
         timeSlot: true,
         doctor: true,
         patient: true,
+        service: true,
       },
     });
     if (!appointment) return null;
@@ -39,6 +41,8 @@ export class PrismaAppointmentRepository implements AppointmentRepository {
         doctor: {
           select: { name: true, specialty: true }
         },
+        service: true,
+        review: true,
       },
       orderBy: {
         createdAt: "desc",
@@ -57,6 +61,7 @@ export class PrismaAppointmentRepository implements AppointmentRepository {
         patient: {
           select: { name: true, email: true }
         },
+        service: true,
       },
       orderBy: {
         createdAt: "desc",
@@ -70,6 +75,6 @@ export class PrismaAppointmentRepository implements AppointmentRepository {
       where: { id },
       data: { status },
     });
-    return appointment as AppointmentEntity;
+    return appointment as unknown as AppointmentEntity;
   }
 }

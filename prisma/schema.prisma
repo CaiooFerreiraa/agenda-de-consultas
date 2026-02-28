@@ -53,6 +53,11 @@ model User {
   role          Role      @default(PATIENT)
   specialty     String?   @db.VarChar(100)
   crm           String?   @db.VarChar(50)
+  bio           String?   @db.Text
+  formation     String?   @db.Text
+  experience    Int?      @default(0)
+  lastSeen      DateTime? @map("last_seen")
+  price         Decimal?  @db.Decimal(10, 2)
   
   accounts      Account[]
   sessions      Session[]
@@ -61,8 +66,44 @@ model User {
   doctorAppointments  Appointment[] @relation("DoctorAppointments")
   
   doctorTimeSlots     TimeSlot[]    @relation("DoctorTimeSlots")
+  services            Service[]     @relation("DoctorServices")
+  
+  reviewsRaw          Review[]      @relation("DoctorReviews")
+  givenReviews        Review[]      @relation("PatientReviews")
 
   @@map("users")
+}
+
+model Review {
+  id            String   @id @default(cuid())
+  appointmentId String   @unique @map("appointment_id")
+  patientId     String   @map("patient_id")
+  doctorId      String   @map("doctor_id")
+  rating        Int      @default(5)
+  comment       String?  @db.Text
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  appointment   Appointment @relation(fields: [appointmentId], references: [id], onDelete: Cascade)
+  patient       User        @relation("PatientReviews", fields: [patientId], references: [id])
+  doctor        User        @relation("DoctorReviews", fields: [doctorId], references: [id])
+
+  @@map("reviews")
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  doctorId    String   @map("doctor_id")
+  name        String   @db.VarChar(100)
+  description String?  @db.Text
+  price       Decimal  @db.Decimal(10, 2)
+  duration    Int?     // Duração em minutos
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  doctor      User     @relation("DoctorServices", fields: [doctorId], references: [id], onDelete: Cascade)
+  appointments Appointment[]
+
+  @@map("services")
 }
 
 model VerificationToken {
@@ -100,12 +141,42 @@ model Appointment {
   timeSlotId  String   @unique @map("time_slot_id")
   status      AppointmentStatus @default(SCHEDULED)
   notes       String?  @db.Text
+  serviceId   String?  @map("service_id")
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
 
   patient     User     @relation("PatientAppointments", fields: [patientId], references: [id])
   doctor      User     @relation("DoctorAppointments", fields: [doctorId], references: [id])
   timeSlot    TimeSlot @relation(fields: [timeSlotId], references: [id])
+  review      Review?
+  service     Service? @relation(fields: [serviceId], references: [id])
 
   @@map("appointments")
+}
+
+model Message {
+  id          String   @id @default(cuid())
+  content     String   @db.Text
+  senderId    String   @map("sender_id")
+  receiverId  String   @map("receiver_id")
+  chatId      String?  @map("chat_id")
+  createdAt   DateTime @default(now()) @map("created_at")
+  isRead      Boolean  @default(false) @map("is_read")
+
+  chat        Chat?    @relation(fields: [chatId], references: [id], onDelete: SetNull)
+
+  @@map("messages")
+}
+
+model Chat {
+  id          String   @id @default(cuid())
+  patientId   String   @map("patient_id")
+  doctorId    String   @map("doctor_id")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  messages    Message[]
+
+  @@unique([patientId, doctorId])
+  @@map("chats")
 }

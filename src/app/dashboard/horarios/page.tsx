@@ -1,107 +1,79 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import {
-  listDoctorTimeSlots,
-  createTimeSlotAction,
-  blockTimeSlotAction,
-  unblockTimeSlotAction
-} from "@/actions/doctor/time-slots";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { format } from "date-fns";
-import { ptBR } from "date-fns/locale";
+import { listDoctorTimeSlots } from "@/actions/doctor/time-slots";
+import { BulkCreateForm } from "@/components/dashboard/bulk-create-form";
+import { TimeSlotList } from "@/components/dashboard/time-slot-list";
+import { Clock, Plus, CalendarCheck } from "lucide-react";
 
 export default async function HorariosPage() {
   const session = await auth();
 
-  if (!session?.user || session.user.role !== 'DOCTOR') {
+  if (!session?.user || session.user.role !== "DOCTOR") {
     redirect("/dashboard");
   }
 
-  const timeSlots = await listDoctorTimeSlots();
+  let dbSlots = await listDoctorTimeSlots();
+  dbSlots = dbSlots.filter((s: any) => new Date(s.date).getUTCHours() !== 0);
+
+  const available = dbSlots.filter((s: any) => !s.isBlocked && !s.isBooked).length;
+  const booked = dbSlots.filter((s: any) => s.isBooked).length;
+  const blocked = dbSlots.filter((s: any) => s.isBlocked).length;
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-500 max-w-4xl">
-      <header className="mb-8 border-b border-neutral-100 pb-6">
-        <h1 className="text-4xl font-playfair font-medium tracking-tight mb-2">
-          Gestão de Horários
-        </h1>
-        <p className="text-neutral-500">
-          Adicione, bloqueie ou libere horários de atendimento.
-        </p>
-      </header>
-
-      <div className="bg-white p-6 rounded-2xl border border-neutral-100 shadow-sm mb-12">
-        <h2 className="text-xl font-playfair font-medium mb-4">Novo Horário</h2>
-        <form action={createTimeSlotAction} className="flex flex-col md:flex-row items-end gap-4">
-          <div className="space-y-2 flex-1 w-full">
-            <Label htmlFor="date">Data da Consulta</Label>
-            <Input id="date" name="date" type="date" required className="bg-neutral-50/50" />
-          </div>
-          <div className="space-y-2 flex-1 w-full">
-            <Label htmlFor="time">Horário (HH:mm)</Label>
-            <Input id="time" name="time" type="time" required className="bg-neutral-50/50" />
-          </div>
-          <Button type="submit" className="w-full md:w-auto h-10 px-8">Adicionar</Button>
-        </form>
+    <div className="space-y-8 animate-in fade-in duration-500 selection:bg-primary/10">
+      <div>
+        <h1 className="text-3xl font-extrabold text-neutral-900 mb-1 tracking-tight">Gestão de Horários</h1>
+        <p className="text-neutral-500 text-sm font-medium">Crie slots de atendimento e gerencie sua disponibilidade.</p>
       </div>
 
-      <h2 className="text-2xl font-playfair font-medium mb-6">Horários Cadastrados</h2>
+      {/* Stats */}
+      <div className="grid grid-cols-3 gap-4">
+        {[
+          { label: "Disponíveis", value: available, color: "bg-emerald-50 text-emerald-600", icon: CalendarCheck },
+          { label: "Agendados", value: booked, color: "bg-blue-50 text-primary", icon: Clock },
+          { label: "Bloqueados", value: blocked, color: "bg-red-50 text-red-500", icon: Clock },
+        ].map(({ label, value, color, icon: Icon }) => (
+          <div key={label} className="bg-white rounded-3xl border border-neutral-100 p-6 text-center hover:border-primary/20 hover:shadow-xl hover:shadow-black/[0.02] transition-all group">
+            <div className={`w-10 h-10 rounded-2xl mx-auto mb-3 flex items-center justify-center transition-colors ${color}`}>
+              <Icon className="w-5 h-5" />
+            </div>
+            <p className="text-3xl font-black text-neutral-900 leading-none tracking-tight">{value}</p>
+            <p className="text-[10px] uppercase font-bold tracking-widest text-neutral-400 mt-2.5 group-hover:text-primary transition-colors">{label}</p>
+          </div>
+        ))}
+      </div>
 
-      {timeSlots.length === 0 ? (
-        <div className="text-center p-12 bg-white rounded-2xl border border-neutral-100 border-dashed">
-          <p className="text-neutral-500">Nenhum horário cadastrado ainda.</p>
+      {/* Create Form */}
+      <div className="bg-white rounded-[2.5rem] border border-neutral-100 shadow-sm overflow-hidden">
+        <div className="px-8 py-6 border-b border-neutral-100 flex items-center gap-4 bg-neutral-50/30">
+          <div className="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center">
+            <Plus className="w-5 h-5 text-primary" />
+          </div>
+          <div>
+            <h2 className="text-lg font-bold text-neutral-900 tracking-tight">Criar Horários em Lote</h2>
+            <p className="text-xs text-neutral-400 font-medium">Gere múltiplos slots de atendimento de uma vez</p>
+          </div>
         </div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {timeSlots.map((ts: any) => {
-            const date = new Date(ts.date);
-            const isBooked = ts.isBooked;
-            const isBlocked = ts.isBlocked;
-
-            return (
-              <div key={ts.id} className="p-4 bg-white rounded-xl border border-neutral-100 shadow-sm flex flex-col">
-                <div className="flex justify-between items-start mb-4">
-                  <span className={`text-[10px] uppercase font-bold tracking-wider px-2 py-1 rounded-full ${isBooked ? 'bg-amber-100 text-amber-700' :
-                      isBlocked ? 'bg-red-100 text-red-700' :
-                        'bg-green-100 text-green-700'
-                    }`}>
-                    {isBooked ? 'Ocupado' : isBlocked ? 'Bloqueado' : 'Livre'}
-                  </span>
-                </div>
-
-                <h3 className="text-lg font-medium mb-1 truncate">
-                  {format(date, "dd MMM yyyy", { locale: ptBR })}
-                </h3>
-                <p className="text-neutral-500 text-sm mb-4">
-                  {format(date, "HH:mm")}
-                </p>
-
-                <div className="mt-auto">
-                  {isBooked ? (
-                    <Button disabled variant="outline" className="w-full text-xs h-8 opacity-50 cursor-not-allowed">
-                      Indisponível (Agendado)
-                    </Button>
-                  ) : isBlocked ? (
-                    <form action={unblockTimeSlotAction.bind(null, ts.id)}>
-                      <Button type="submit" variant="outline" className="w-full text-xs h-8 border-green-200 bg-green-50 text-green-700 hover:bg-green-100 hover:text-green-800">
-                        Desbloquear
-                      </Button>
-                    </form>
-                  ) : (
-                    <form action={blockTimeSlotAction.bind(null, ts.id)}>
-                      <Button type="submit" variant="outline" className="w-full text-xs h-8 border-red-200 bg-red-50 text-red-700 hover:bg-red-100 hover:text-red-800">
-                        Bloquear
-                      </Button>
-                    </form>
-                  )}
-                </div>
-              </div>
-            );
-          })}
+        <div className="p-8">
+          <BulkCreateForm />
         </div>
-      )}
+      </div>
+
+      {/* Time Slots List */}
+      <div className="bg-white rounded-[2.5rem] border border-neutral-100 shadow-sm overflow-hidden">
+        <div className="px-8 py-6 border-b border-neutral-100 flex items-center gap-4 bg-neutral-50/30">
+          <div className="w-10 h-10 rounded-2xl bg-neutral-100 flex items-center justify-center">
+            <Clock className="w-5 h-5 text-neutral-600" />
+          </div>
+          <div>
+            <h2 className="text-lg font-bold text-neutral-900 tracking-tight">Meus Horários</h2>
+            <p className="text-xs text-neutral-400 font-medium">{dbSlots.length} horário(s) configurado(s)</p>
+          </div>
+        </div>
+        <div className="p-8">
+          <TimeSlotList timeSlots={dbSlots} />
+        </div>
+      </div>
     </div>
   );
 }

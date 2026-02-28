@@ -5,7 +5,7 @@ import { PrismaAppointmentRepository } from "@/infrastructure/repositories/prism
 import { ManageDoctorAppointmentUseCase } from "@/domain/use-cases/doctor/manage-appointments";
 import { revalidatePath } from "next/cache";
 
-export async function completeAppointmentAction(appointmentId: string) {
+export async function completeAppointmentAction(appointmentId: string, formData?: FormData) {
   try {
     const session = await auth();
     if (!session || session.user.role !== 'DOCTOR') {
@@ -24,7 +24,7 @@ export async function completeAppointmentAction(appointmentId: string) {
   }
 }
 
-export async function cancelDoctorAppointmentAction(appointmentId: string) {
+export async function cancelDoctorAppointmentAction(appointmentId: string, formData?: FormData) {
   try {
     const session = await auth();
     if (!session || session.user.role !== 'DOCTOR') {
