@@ -28,6 +28,7 @@ O MedSchedule é uma plataforma robusta de marketplace de saúde que conecta pac
 - **Roteamento Next.js 15**: Adaptação de componentes assíncronos (params/searchParams) e remoção de `useSearchParams` em componentes aninhados para evitar warnings de hidratação.
 - **Correção de Erro de Build na Vercel**: Alteração no `prisma.config.ts` para usar `process.env.DATABASE_URL` em vez do helper `env()`, evitando erros de variável de ambiente ausente durante a execução do `prisma generate` no deploy.
 - **Correção de Build Vercel**: Adição do script `postinstall: prisma generate` no `package.json` para evitar erros de inicialização do cliente Prisma durante o deploy.
+- **Correção TypeScript (Prisma Config)**: Adição de assertion `as string` em `process.env.DATABASE_URL` no `prisma.config.ts` para resolver erro do compilador durante o build local e no deploy.
 - **Identidade Visual (Favicon)**: Implementação do novo favicon institucional enviado pelo usuário em alta resolução (PNG) para consolidar a marca.
 
 ## Notas de Desenvolvimento
