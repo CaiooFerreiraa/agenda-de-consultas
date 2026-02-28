@@ -74,7 +74,7 @@ export class PrismaTimeSlotRepository implements TimeSlotRepository {
     const today = new Date();
     today.setUTCHours(0, 0, 0, 0);
 
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: any) => {
       // 1. Apaga todos os bloqueios de "dia todo" (hora 00:00:00) a partir de hoje
       const existingSlots = await tx.timeSlot.findMany({
         where: {
@@ -85,8 +85,8 @@ export class PrismaTimeSlotRepository implements TimeSlotRepository {
       });
 
       const idsToDelete = existingSlots
-        .filter((s) => s.date.getUTCHours() === 0)
-        .map((s) => s.id);
+        .filter((s: any) => s.date.getUTCHours() === 0)
+        .map((s: any) => s.id);
 
       if (idsToDelete.length > 0) {
         await tx.timeSlot.deleteMany({
