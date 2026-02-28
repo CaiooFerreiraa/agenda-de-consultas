@@ -12,11 +12,11 @@ export const metadata: Metadata = {
   description: "Plataforma moderna para agendamentos de consultas médicas.",
   icons: {
     icon: [
+      { url: "/favicon.png", type: "image/png" },
       { url: "/favicon-medical.svg", type: "image/svg+xml" },
-      { url: "/favicon.svg", type: "image/svg+xml" }
     ],
-    apple: "/favicon-medical.svg",
-    shortcut: "/favicon-medical.svg",
+    apple: "/favicon.png",
+    shortcut: "/favicon.png",
   },
 };
 

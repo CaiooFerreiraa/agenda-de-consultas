@@ -26,6 +26,8 @@ O MedSchedule é uma plataforma robusta de marketplace de saúde que conecta pac
 - **Expansão de Layout (Wide Screen)**: Adaptação das interfaces para utilizar larguras de até 1700px, criando um ambiente de trabalho mais robusto e "premium", removendo a sensação de design pequeno e centralizado.
 - **Segurança**: Remoção do arquivo `.env` do controle de versão e configuração de `.gitignore` rigoroso.
 - **Roteamento Next.js 15**: Adaptação de componentes assíncronos (params/searchParams) e remoção de `useSearchParams` em componentes aninhados para evitar warnings de hidratação.
+- **Correção de Build Vercel**: Adição do script `postinstall: prisma generate` no `package.json` para evitar erros de inicialização do cliente Prisma durante o deploy.
+- **Identidade Visual (Favicon)**: Implementação do novo favicon institucional enviado pelo usuário em alta resolução (PNG) para consolidar a marca.
 
 ## Notas de Desenvolvimento
 - Sempre utilizar `.agent/database.md` e `.agent/design.md` como guias antes de novas features.
