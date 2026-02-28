@@ -1,6 +1,7 @@
 import { prisma } from "../database/prisma";
 import { TimeSlotEntity } from "@/domain/entities/time-slot";
 import { TimeSlotRepository } from "@/domain/repositories/time-slot-repository";
+import { Prisma } from "@prisma/client";
 
 export class PrismaTimeSlotRepository implements TimeSlotRepository {
   async create(data: Omit<TimeSlotEntity, "id">): Promise<TimeSlotEntity> {
@@ -74,7 +75,7 @@ export class PrismaTimeSlotRepository implements TimeSlotRepository {
     const today = new Date();
     today.setUTCHours(0, 0, 0, 0);
 
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       // 1. Apaga todos os bloqueios de "dia todo" (hora 00:00:00) a partir de hoje
       const existingSlots = await tx.timeSlot.findMany({
         where: {
