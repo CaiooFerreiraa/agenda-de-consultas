@@ -10,6 +10,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "MedSchedule | Sua Saúde em Primeiro Lugar",
   description: "Plataforma moderna para agendamentos de consultas médicas.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

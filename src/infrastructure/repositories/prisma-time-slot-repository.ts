@@ -77,7 +77,7 @@ export class PrismaTimeSlotRepository implements TimeSlotRepository {
 
     await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       // 1. Apaga todos os bloqueios de "dia todo" (hora 00:00:00) a partir de hoje
-      const existingSlots: Prisma.TimeSlotGetPayload<{}> [] = await tx.timeSlot.findMany({
+      const existingSlots: Prisma.TimeSlot[] = await tx.timeSlot.findMany({
         where: {
           doctorId,
           isBlocked: true,
