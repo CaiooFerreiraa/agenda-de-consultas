@@ -30,6 +30,8 @@ ENV DATABASE_URL=$DATABASE_URL
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 ENV NEXT_TELEMETRY_DISABLED=1
 
+RUN npx prisma generate
+
 RUN npm run build
 
 # Imagem final de produção
