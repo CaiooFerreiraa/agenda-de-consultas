@@ -1,10 +1,10 @@
 # Usar imagem do Node.js
 FROM node:20-alpine AS base
 WORKDIR /app
+RUN apk add --no-cache libc6-compat gcompat libstdc++
 
 # Instalar dependências
 FROM base AS install
-RUN apk add --no-cache libc6-compat
 RUN mkdir -p /temp/dev
 COPY package.json package-lock.json* /temp/dev/
 COPY prisma /temp/dev/prisma
@@ -12,7 +12,6 @@ RUN cd /temp/dev && npm ci
 
 # Instalar dependências de produção
 FROM base AS install-prod
-RUN apk add --no-cache libc6-compat
 RUN mkdir -p /temp/prod
 COPY package.json package-lock.json* /temp/prod/
 COPY prisma /temp/prod/prisma

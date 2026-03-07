@@ -32,6 +32,7 @@ O Conecta Saúde é uma plataforma robusta de marketplace de saúde que conecta 
 - **Identidade Visual (Favicon)**: Implementação do novo favicon institucional enviado pelo usuário em alta resolução (PNG) para consolidar a marca.
 - **Rebranding**: Alteração do nome do sistema de "MedSchedule" para "Conecta Saúde" em toda a interface, metadados e documentação do agente.
 - **Implementação de Pipeline CI/CD**: Criado `Dockerfile` otimizado para Node.js (Alpine), `.dockerignore`, `docker-compose.yml` e workflow do GitHub Actions (`deploy.yml`) para deploy automático em containers na AWS EC2. Configuração baseada em Docker Hub e SSH, adaptando a estrutura previamente usada no Multiverso Literário para o ambiente Node.js.
+- **Correção de Erro de Build (lightningcss)**: Adição de `gcompat` e `libstdc++` ao `Dockerfile` (Alpine) para resolver o erro de carregamento de módulos nativos do `lightningcss` (Tailwind v4) durante o build no ambiente Docker.
 
 ## Notas de Desenvolvimento
 - Sempre utilizar `.agent/database.md` e `.agent/design.md` como guias antes de novas features.
