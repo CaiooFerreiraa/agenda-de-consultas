@@ -31,6 +31,7 @@ O Conecta Saúde é uma plataforma robusta de marketplace de saúde que conecta 
 - **Correção TypeScript (Prisma Config)**: Adição de assertion `as string` em `process.env.DATABASE_URL` no `prisma.config.ts` para resolver erro do compilador durante o build local e no deploy.
 - **Identidade Visual (Favicon)**: Implementação do novo favicon institucional enviado pelo usuário em alta resolução (PNG) para consolidar a marca.
 - **Rebranding**: Alteração do nome do sistema de "MedSchedule" para "Conecta Saúde" em toda a interface, metadados e documentação do agente.
+- **Implementação de Pipeline CI/CD**: Criado `Dockerfile` otimizado para Node.js (Alpine), `.dockerignore`, `docker-compose.yml` e workflow do GitHub Actions (`deploy.yml`) para deploy automático em containers na AWS EC2. Configuração baseada em Docker Hub e SSH, adaptando a estrutura previamente usada no Multiverso Literário para o ambiente Node.js.
 
 ## Notas de Desenvolvimento
 - Sempre utilizar `.agent/database.md` e `.agent/design.md` como guias antes de novas features.

@@ -1,0 +1,21 @@
+services:
+  app:
+    image: ${DOCKER_IMAGE:-kaiozyn/conecta-saude:latest}
+    container_name: conecta-saude
+    restart: always
+    expose:
+      - "3000"
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+      AUTH_SECRET: ${AUTH_SECRET}
+      NEXTAUTH_URL: ${NEXTAUTH_URL}
+      AUTH_TRUST_HOST: ${AUTH_TRUST_HOST:-true}
+    networks:
+      - nginx-proxy-manager_default
+
+networks:
+  nginx-proxy-manager_default:
+    external: true
