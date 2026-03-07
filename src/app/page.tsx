@@ -322,7 +322,7 @@ export default async function Home(props: { searchParams: Promise<{ query?: stri
                     <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-2xl px-12 h-14 text-base font-bold shadow-xl shadow-primary/20 border-0">
                       <Link href="/register">Criar Conta Gratuita</Link>
                     </Button>
-                    <Button asChild size="lg" variant="outline" className="rounded-2xl px-12 h-14 border-white/10 text-white bg-white/5 hover:bg-white/10 text-base font-bold">
+                    <Button asChild size="lg" variant="outline" className="rounded-2xl px-12 h-14 border-white/10 text-white bg-white/5 hover:bg-white/10 text-base font-bold hover:text-white">
                       <Link href="/login">Acessar minha conta</Link>
                     </Button>
                   </>
