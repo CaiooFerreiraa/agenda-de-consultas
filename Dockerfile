@@ -1,7 +1,10 @@
-# Usar imagem do Node.js
-FROM node:20-alpine AS base
+# Usar imagem do Node.js (Debian Slim para maior compatibilidade com módulos nativos)
+FROM node:20-bookworm-slim AS base
 WORKDIR /app
-RUN apk add --no-cache libc6-compat gcompat libstdc++
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  openssl \
+  ca-certificates \
+  && rm -rf /var/lib/apt/lists/*
 
 # Instalar dependências
 FROM base AS install
