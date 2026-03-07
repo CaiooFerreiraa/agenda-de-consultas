@@ -1,51 +1,61 @@
-# Usar imagem do Node.js (Debian Slim para maior compatibilidade com módulos nativos)
-FROM node:20-bookworm-slim AS base
+# 1. Estágio de Dependências
+# Nota: Usando bookworm (Debian) em vez de alpine para garantir compatibilidade 
+# total com os binários nativos do lightningcss usados pelo Tailwind CSS v4.
+FROM node:20-bookworm AS deps
 WORKDIR /app
-RUN apt-get update && apt-get install -y --no-install-recommends \
-  openssl \
-  ca-certificates \
-  && rm -rf /var/lib/apt/lists/*
 
-# Instalar dependências
-FROM base AS install
-RUN mkdir -p /temp/dev
-COPY package.json package-lock.json* /temp/dev/
-COPY prisma /temp/dev/prisma
-RUN cd /temp/dev && npm ci
+# Instalar dependências necessárias para o Prisma e build
+RUN apt-get update && apt-get install -y openssl ca-certificates && rm -rf /var/lib/apt/lists/*
 
-# Instalar dependências de produção
-FROM base AS install-prod
-RUN mkdir -p /temp/prod
-COPY package.json package-lock.json* /temp/prod/
-COPY prisma /temp/prod/prisma
-RUN cd /temp/prod && npm ci --omit=dev
+COPY package.json package-lock.json* ./
+COPY prisma ./prisma/
 
-# Build do projeto
-FROM base AS build
-COPY --from=install /temp/dev/node_modules node_modules
+# Instalação limpa das dependências
+RUN npm install
+
+# 2. Estágio de Build
+FROM node:20-bookworm AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Variáveis de ambiente para o build
-ARG DATABASE_URL
-ARG NEXT_PUBLIC_API_URL
-ENV DATABASE_URL=$DATABASE_URL
-ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+# Desabilitar telemetria
 ENV NEXT_TELEMETRY_DISABLED=1
 
-RUN npx prisma generate
+# Variáveis para o build
+ARG DATABASE_URL
+ARG NEXT_PUBLIC_API_URL
 
+ENV DATABASE_URL=$DATABASE_URL
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+
+# Gerar cliente Prisma e Build
+RUN npx prisma generate
 RUN npm run build
 
-# Imagem final de produção
-FROM base AS release
-COPY --from=install-prod /temp/prod/node_modules node_modules
-COPY --from=build /app/.next .next
-COPY --from=build /app/public public
-COPY --from=build /app/package.json .
-COPY --from=build /app/prisma prisma
+# 3. Estágio de Execução (Runner)
+FROM node:20-bookworm-slim AS runner
+WORKDIR /app
 
-# Expor a porta 3000
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+
+# Instalar runtime do openssl para o Prisma
+RUN apt-get update && apt-get install -y openssl ca-certificates && rm -rf /var/lib/apt/lists/*
+
+RUN addgroup --system --gid 1001 nodejs && \
+  adduser --system --uid 1001 nextjs
+
+# Copiar apenas o necessário do build standalone
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+
 EXPOSE 3000
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
 
-# Comando para rodar a aplicação
-CMD ["npm", "run", "start"]
+# server.js é gerado pelo output: standalone do Next.js
+CMD ["node", "server.js"]
